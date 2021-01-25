@@ -36,10 +36,10 @@ import BigStat from "./components/BigStat/BigStat";
 
 const mainChartData = getMainChartData();
 const PieChartData = [
-  { name: "Group A", value: 400, color: "primary" },
-  { name: "Group B", value: 300, color: "secondary" },
-  { name: "Group C", value: 300, color: "warning" },
-  { name: "Group D", value: 200, color: "success" },
+  { name: "QA", value: 400, color: "primary" },
+  { name: "System Updates", value: 300, color: "secondary" },
+  { name: "Configuration", value: 300, color: "warning" },
+  { name: "Environment Set Up", value: 200, color: "success" },
 ];
 
 export default function Dashboard(props) {
@@ -53,9 +53,72 @@ export default function Dashboard(props) {
     <>
       <PageTitle title="Current Sprint"/>
       <Grid container spacing={4}>
+        <Grid item lg={3} md={8} sm={6} xs={12}>
+          <Widget
+            title="Issues This Sprint"
+            upperTitle
+            className={classes.card}
+            bodyClass={classes.fullHeightBody}
+          >
+            <div className={classes.performanceLegendWrapper}>
+              <div className={classes.legendElement}>
+                <Dot color="warning" />
+                <Typography
+                  color="text"
+                  colorBrightness="secondary"
+                  className={classes.legendElementText}
+                >
+                  Open
+                </Typography>
+              </div>
+              <div className={classes.legendElement}>
+                <Dot color="primary" />
+                <Typography
+                  color="text"
+                  colorBrightness="secondary"
+                  className={classes.legendElementText}
+                >
+                  Closed
+                </Typography>
+              </div>
+            </div>
+            <div className={classes.progressSection}>
+              <Typography
+                size="md"
+                color="text"
+                colorBrightness="secondary"
+                className={classes.progressSectionTitle}
+              >
+                Closed
+              </Typography>
+              <LinearProgress
+                variant="determinate"
+                value={77}
+                classes={{ barColorPrimary: classes.progressBarPrimary }}
+                className={classes.progress}
+              />
+            </div>
+            <div>
+              <Typography
+                size="md"
+                color="text"
+                colorBrightness="secondary"
+                className={classes.progressSectionTitle}
+              >
+                Open
+              </Typography>
+              <LinearProgress
+                variant="determinate"
+                value={73}
+                classes={{ barColorPrimary: classes.progressBarWarning }}
+                className={classes.progress}
+              />
+            </div>
+          </Widget>
+        </Grid>
         <Grid item lg={3} md={4} sm={6} xs={12}>
           <Widget
-            title="Open QA Issues"
+            title="QA Issues"
             upperTitle
             bodyClass={classes.fullHeightBody}
             className={classes.card}
@@ -98,91 +161,22 @@ export default function Dashboard(props) {
             >
               <Grid item xs={4}>
                 <Typography color="text" colorBrightness="secondary" noWrap>
-                  Registrations
+                  Open
                 </Typography>
                 <Typography size="md">860</Typography>
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={8}>
                 <Typography color="text" colorBrightness="secondary" noWrap>
-                  Sign Out
+                  QA Changes Needed
                 </Typography>
                 <Typography size="md">32</Typography>
-              </Grid>
-              <Grid item xs={4}>
-                <Typography color="text" colorBrightness="secondary" noWrap>
-                  Rate
-                </Typography>
-                <Typography size="md">3.25%</Typography>
               </Grid>
             </Grid>
           </Widget>
         </Grid>
         <Grid item lg={3} md={8} sm={6} xs={12}>
           <Widget
-            title="App Performance"
-            upperTitle
-            className={classes.card}
-            bodyClass={classes.fullHeightBody}
-          >
-            <div className={classes.performanceLegendWrapper}>
-              <div className={classes.legendElement}>
-                <Dot color="warning" />
-                <Typography
-                  color="text"
-                  colorBrightness="secondary"
-                  className={classes.legendElementText}
-                >
-                  Integration
-                </Typography>
-              </div>
-              <div className={classes.legendElement}>
-                <Dot color="primary" />
-                <Typography
-                  color="text"
-                  colorBrightness="secondary"
-                  className={classes.legendElementText}
-                >
-                  SDK
-                </Typography>
-              </div>
-            </div>
-            <div className={classes.progressSection}>
-              <Typography
-                size="md"
-                color="text"
-                colorBrightness="secondary"
-                className={classes.progressSectionTitle}
-              >
-                Integration
-              </Typography>
-              <LinearProgress
-                variant="determinate"
-                value={77}
-                classes={{ barColorPrimary: classes.progressBarPrimary }}
-                className={classes.progress}
-              />
-            </div>
-            <div>
-              <Typography
-                size="md"
-                color="text"
-                colorBrightness="secondary"
-                className={classes.progressSectionTitle}
-              >
-                SDK
-              </Typography>
-              <LinearProgress
-                variant="determinate"
-                value={73}
-                classes={{ barColorPrimary: classes.progressBarWarning }}
-                className={classes.progress}
-              />
-            </div>
-          </Widget>
-        </Grid>
-        <Grid item lg={3} md={8} sm={6} xs={12}>
-          <Widget
-            title="Server Overview"
+            title="System Updates"
             upperTitle
             className={classes.card}
             bodyClass={classes.fullHeightBody}
@@ -194,7 +188,7 @@ export default function Dashboard(props) {
                 className={classes.serverOverviewElementText}
                 noWrap
               >
-                60% / 37°С / 3.3 Ghz
+                Alpha
               </Typography>
               <div className={classes.serverOverviewElementChartWrapper}>
                 <ResponsiveContainer height={50} width="99%">
@@ -218,7 +212,7 @@ export default function Dashboard(props) {
                 className={classes.serverOverviewElementText}
                 noWrap
               >
-                54% / 31°С / 3.3 Ghz
+                Prod
               </Typography>
               <div className={classes.serverOverviewElementChartWrapper}>
                 <ResponsiveContainer height={50} width="99%">
@@ -235,34 +229,10 @@ export default function Dashboard(props) {
                 </ResponsiveContainer>
               </div>
             </div>
-            <div className={classes.serverOverviewElement}>
-              <Typography
-                color="text"
-                colorBrightness="secondary"
-                className={classes.serverOverviewElementText}
-                noWrap
-              >
-                57% / 21°С / 3.3 Ghz
-              </Typography>
-              <div className={classes.serverOverviewElementChartWrapper}>
-                <ResponsiveContainer height={50} width="99%">
-                  <AreaChart data={getRandomData(10)}>
-                    <Area
-                      type="natural"
-                      dataKey="value"
-                      stroke={theme.palette.warning.main}
-                      fill={theme.palette.warning.light}
-                      strokeWidth={2}
-                      fillOpacity="0.25"
-                    />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
           </Widget>
         </Grid>
         <Grid item lg={3} md={4} sm={6} xs={12}>
-          <Widget title="Revenue Breakdown" upperTitle className={classes.card}>
+          <Widget title="Issue Breakdown" upperTitle className={classes.card}>
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <ResponsiveContainer width="100%" height={144}>
@@ -401,14 +371,15 @@ export default function Dashboard(props) {
             </ResponsiveContainer>
           </Widget>
         </Grid>
-        {mock.bigStat.map(stat => (
+        {/* Could possibly use in the future but commenting out charts for now */}
+        {/* {mock.bigStat.map(stat => (
           <Grid item md={4} sm={6} xs={12} key={stat.product}>
             <BigStat {...stat} />
           </Grid>
-        ))}
+        ))} */}
         <Grid item xs={12}>
           <Widget
-            title="Support Requests"
+            title="Issues per Client"
             upperTitle
             noBodyPadding
             bodyClass={classes.tableWidget}
