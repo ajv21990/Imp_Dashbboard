@@ -137,32 +137,31 @@ export default function Header(props) {
           )}
         </IconButton>
         <Typography variant="h6" weight="medium" className={classes.logotype}>
-          React Material Admin
+          Implementation
         </Typography>
         <div className={classes.grow} />
-        <Button component={Link} href="https://flatlogic.com/templates/react-material-admin-full" variant={"outlined"} color={"secondary"} className={classes.purchaseBtn}>Unlock full version</Button>
         <div
           className={classNames(classes.search, {
             [classes.searchFocused]: isSearchOpen,
           })}
         >
-          <div
+          {/* <div
             className={classNames(classes.searchIcon, {
               [classes.searchIconOpened]: isSearchOpen,
             })}
             onClick={() => setSearchOpen(!isSearchOpen)}
           >
             <SearchIcon classes={{ root: classes.headerIcon }} />
-          </div>
-          <InputBase
+          </div> */}
+          {/* <InputBase
             placeholder="Search…"
             classes={{
               root: classes.inputRoot,
               input: classes.inputInput,
             }}
-          />
+          /> */}
         </div>
-        <IconButton
+        {/* <IconButton
           color="inherit"
           aria-haspopup="true"
           aria-controls="mail-menu"
@@ -178,8 +177,8 @@ export default function Header(props) {
           >
             <NotificationsIcon classes={{ root: classes.headerIcon }} />
           </Badge>
-        </IconButton>
-        <IconButton
+        </IconButton> */}
+        {/* <IconButton
           color="inherit"
           aria-haspopup="true"
           aria-controls="mail-menu"
@@ -195,8 +194,8 @@ export default function Header(props) {
           >
             <MailIcon classes={{ root: classes.headerIcon }} />
           </Badge>
-        </IconButton>
-        <IconButton
+        </IconButton> */}
+        {/* <IconButton
           aria-haspopup="true"
           color="inherit"
           className={classes.headerMenuButton}
@@ -204,7 +203,7 @@ export default function Header(props) {
           onClick={e => setProfileMenu(e.currentTarget)}
         >
           <AccountIcon classes={{ root: classes.headerIcon }} />
-        </IconButton>
+        </IconButton> */}
         <Menu
           id="mail-menu"
           open={Boolean(mailMenu)}
