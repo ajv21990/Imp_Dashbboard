@@ -31,12 +31,12 @@ export default function TableComponent({ data }) {
         </TableRow>
       </TableHead>
       <TableBody>
-        {data.map(({ id, name, pm, product, price, date, city, status }) => (
+        {data.map(({ id, name, pm, alpha, burn_time, date, city, status }) => (
           <TableRow key={id}>
             <TableCell className="pl-3 fw-normal">{name}</TableCell>
             <TableCell>{pm}</TableCell>
-            <TableCell>{product}</TableCell>
-            <TableCell>{price}</TableCell>
+            <TableCell>{alpha}</TableCell>
+            <TableCell>{burn_time}</TableCell>
             <TableCell>{date}</TableCell>
             <TableCell>{city}</TableCell>
             <TableCell>

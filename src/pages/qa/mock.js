@@ -27,7 +27,7 @@ export default {
   ],
   bigStat: [
     {
-      product: "Light Blue",
+      alpha: "Light Blue",
       total: {
         monthly: 4232,
         weekly: 1465,
@@ -47,7 +47,7 @@ export default {
       }
     },
     {
-      product: "Sing App",
+      alpha: "Sing App",
       total: {
         monthly: 754,
         weekly: 180,
@@ -67,7 +67,7 @@ export default {
       }
     },
     {
-      product: "RNS",
+      alpha: "RNS",
       total: {
         monthly: 1025,
         weekly: 301,
@@ -132,8 +132,8 @@ export default {
       id: 0,
       name: "AM Bank",
       pm: "Max",
-      product: "ON the Road",
-      price: "$25 224.2",
+      alpha: "Y/N",
+      burn_time: "$25 224.2",
       date: "11 May 2017",
       city: "Otsego",
       status: "Sent"
@@ -142,8 +142,8 @@ export default {
       id: 1,
       name: "BBOW",
       pm: "Bailey",
-      product: "HP Core i7",
-      price: "$1 254.2",
+      alpha: "Y/N",
+      burn_time: "$1 254.2",
       date: "4 Jun 2017",
       city: "Fivepointville",
       status: "Sent"
@@ -152,8 +152,8 @@ export default {
       id: 2,
       name: "BBOK",
       pm: "Bailey",
-      product: "Air Pro",
-      price: "$1 570.0",
+      alpha: "Y/N",
+      burn_time: "$1 570.0",
       date: "27 Aug 2017",
       city: "Leadville North",
       status: "Pending"
@@ -162,8 +162,8 @@ export default {
       id: 3,
       name: "Beneficial State Bank",
       pm: "Bailey",
-      product: "Version Control",
-      price: "$5 224.5",
+      alpha: "Y/N",
+      burn_time: "$5 224.5",
       date: "19 Feb 2018",
       city: "Seaforth",
       status: "Declined"
@@ -172,8 +172,8 @@ export default {
       id: 4,
       name: "CSB Newcastle",
       pm: "Max",
-      product: "Let's Dance",
-      price: "$43 594.7",
+      alpha: "Y/N",
+      burn_time: "$43 594.7",
       date: "1 Mar 2018",
       city: "Hanoverton",
       status: "Sent"
@@ -182,8 +182,8 @@ export default {
       id: 5,
       name: "Equitable Bank",
       pm: "Bailey",
-      product: "Let's Dance",
-      price: "$43 594.7",
+      alpha: "Y/N",
+      burn_time: "$43 594.7",
       date: "1 Mar 2018",
       city: "Hanoverton",
       status: "Sent"
@@ -192,8 +192,8 @@ export default {
       id: 6,
       name: "Evergreen Bank",
       pm: "Bailey",
-      product: "Let's Dance",
-      price: "$43 594.7",
+      alpha: "Y/N",
+      burn_time: "$43 594.7",
       date: "1 Mar 2018",
       city: "Hanoverton",
       status: "Sent"
@@ -202,8 +202,8 @@ export default {
       id: 7,
       name: "First Bank of Alabama",
       pm: "Max",
-      product: "Let's Dance",
-      price: "$43 594.7",
+      alpha: "Y/N",
+      burn_time: "$43 594.7",
       date: "1 Mar 2018",
       city: "Hanoverton",
       status: "Sent"
@@ -212,8 +212,8 @@ export default {
       id: 8,
       name: "FNB Las Animas",
       pm: "Max",
-      product: "Let's Dance",
-      price: "$43 594.7",
+      alpha: "Y/N",
+      burn_time: "$43 594.7",
       date: "1 Mar 2018",
       city: "Hanoverton",
       status: "Sent"
@@ -222,8 +222,8 @@ export default {
       id: 9,
       name: "ICBA",
       pm: "Bailey",
-      product: "Let's Dance",
-      price: "$43 594.7",
+      alpha: "Y/N",
+      burn_time: "$43 594.7",
       date: "1 Mar 2018",
       city: "Hanoverton",
       status: "Sent"
@@ -232,8 +232,8 @@ export default {
       id: 10,
       name: "Sutton Bank",
       pm: "Bailey",
-      product: "Let's Dance",
-      price: "$43 594.7",
+      alpha: "Y/N",
+      burn_time: "$43 594.7",
       date: "1 Mar 2018",
       city: "Hanoverton",
       status: "Sent"
@@ -242,8 +242,8 @@ export default {
       id: 11,
       name: "TCM",
       pm: "Max",
-      product: "Let's Dance",
-      price: "$43 594.7",
+      alpha: "Y/N",
+      burn_time: "$43 594.7",
       date: "1 Mar 2018",
       city: "Hanoverton",
       status: "Sent"
@@ -252,8 +252,8 @@ export default {
       id: 12,
       name: "UBB",
       pm: "Bailey",
-      product: "Let's Dance",
-      price: "$43 594.7",
+      alpha: "Y/N",
+      burn_time: "$43 594.7",
       date: "1 Mar 2018",
       city: "Hanoverton",
       status: "Sent"
@@ -262,8 +262,8 @@ export default {
       id: 13,
       name: "Washington Federal Bank",
       pm: "Bailey",
-      product: "Let's Dance",
-      price: "$43 594.7",
+      alpha: "Y/N",
+      burn_time: "$43 594.7",
       date: "1 Mar 2018",
       city: "Hanoverton",
       status: "Sent"
