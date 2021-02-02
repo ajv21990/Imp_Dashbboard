@@ -10,6 +10,7 @@ import {
   LibraryBooks as LibraryIcon,
   HelpOutline as FAQIcon,
   ArrowBack as ArrowBackIcon,
+  BugReport as BugReportIcon
 } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
@@ -31,21 +32,22 @@ import {
 
 const structure = [
   { id: 0, label: "Sprint", link: "/app/sprint", icon: <HomeIcon /> },
+  { id: 1, label: "QA", link: "/app/qa", icon: <BugReportIcon /> },
   {
-    id: 1,
+    id: 2,
     label: "Typography",
     link: "/app/typography",
     icon: <TypographyIcon />,
   },
-  { id: 2, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
+  { id: 3, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
   {
-    id: 3,
+    id: 4,
     label: "Notifications",
     link: "/app/notifications",
     icon: <NotificationsIcon />,
   },
   {
-    id: 4,
+    id: 5,
     label: "UI Elements",
     link: "/app/ui",
     icon: <UIElementsIcon />,
@@ -55,27 +57,27 @@ const structure = [
       { label: "Maps", link: "/app/ui/maps" },
     ],
   },
-  { id: 5, type: "divider" },
-  { id: 6, type: "title", label: "HELP" },
-  { id: 7, label: "Library", link: "", icon: <LibraryIcon /> },
-  { id: 8, label: "Support", link: "", icon: <SupportIcon /> },
-  { id: 9, label: "FAQ", link: "", icon: <FAQIcon /> },
-  { id: 10, type: "divider" },
-  { id: 11, type: "title", label: "PROJECTS" },
+  { id: 6, type: "divider" },
+  { id: 7, type: "title", label: "HELP" },
+  { id: 8, label: "Library", link: "", icon: <LibraryIcon /> },
+  { id: 9, label: "Support", link: "", icon: <SupportIcon /> },
+  { id: 10, label: "FAQ", link: "", icon: <FAQIcon /> },
+  { id: 11, type: "divider" },
+  { id: 12, type: "title", label: "PROJECTS" },
   {
-    id: 12,
+    id: 13,
     label: "My recent",
     link: "",
     icon: <Dot size="small" color="warning" />,
   },
   {
-    id: 13,
+    id: 14,
     label: "Starred",
     link: "",
     icon: <Dot size="small" color="primary" />,
   },
   {
-    id: 14,
+    id: 15,
     label: "Background",
     link: "",
     icon: <Dot size="small" color="secondary" />,
