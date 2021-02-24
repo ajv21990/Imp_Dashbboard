@@ -1,16 +1,26 @@
 import tinycolor from "tinycolor2";
 
-const primary = "#536DFE";
+const primary = "#000000";
 const secondary = "#FF5C93";
-const warning = "#FFC260";
+const warning = "#1096CB";
 const success = "#3CD4A0";
 const info = "#9013FE";
+const mk = "#000000"
 
 const lightenRate = 7.5;
 const darkenRate = 15;
 
 export default {
   palette: {
+    mk: {
+      main: mk,
+      light: tinycolor(mk)
+        .lighten(lightenRate)
+        .toHexString(),
+      dark: tinycolor(mk)
+        .darken(darkenRate)
+        .toHexString(),
+    },
     primary: {
       main: primary,
       light: tinycolor(primary)

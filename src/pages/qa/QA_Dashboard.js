@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios'
 import {
   Grid,
   LinearProgress,
@@ -21,7 +22,6 @@ import {
   YAxis,
   XAxis,
 } from "recharts";
-
 // styles
 import useStyles from "./styles";
 
@@ -41,6 +41,34 @@ const PieChartData = [
   { name: "Quality Control Change", value: 300, color: "warning" },
   { name: "Pending System Update", value: 200, color: "success" },
 ];
+const monthlyBug = {
+  created: 0, closed: 0, open: 0
+}
+// let config = {
+//   method: 'get',
+//   url: 'https://project.mkdecision.com/issues.json?query_id=115',
+//   headers: { 
+//     key: '92de8d1cb8c1d4ad6c1cd81917da1cc9e15b3920', 
+//     'Access-Control-Allow-Origin': 'http://localhost:3000'
+//   }
+// };
+
+// axios(config)
+// .then((response) => {
+//   console.log(JSON.stringify(response.data));
+// })
+// .catch((error) => {
+//   console.log(error);
+// });
+
+axios.get("https://project.mkdecision.com/issues.json?query_id=115",{
+  withCredentials: true,
+})
+.then(res => {
+  console.log(res)
+}).catch(error => {
+  console.log(error)
+})
 
 export default function QA_Dashboard(props) {
   var classes = useStyles();
@@ -55,20 +83,20 @@ export default function QA_Dashboard(props) {
       <Grid container spacing={4}>
         <Grid item lg={3} md={8} sm={6} xs={12}>
           <Widget
-            title="Bugs Detected"
+            title="This Month's Bugs Detected"
             upperTitle
             className={classes.card}
             bodyClass={classes.fullHeightBody}
           >
             <div className={classes.performanceLegendWrapper}>
-              <div className={classes.legendElement}>
-                <Dot color="warning" />
+            <div className={classes.legendElement}>
+                <Dot color="success" />
                 <Typography
                   color="text"
                   colorBrightness="secondary"
                   className={classes.legendElementText}
                 >
-                  Open
+                  Created
                 </Typography>
               </div>
               <div className={classes.legendElement}>
@@ -81,6 +109,32 @@ export default function QA_Dashboard(props) {
                   Closed
                 </Typography>
               </div>
+              <div className={classes.legendElement}>
+                <Dot color="warning" />
+                <Typography
+                  color="text"
+                  colorBrightness="secondary"
+                  className={classes.legendElementText}
+                >
+                  Open
+                </Typography>
+              </div>
+            </div>
+            <div className={classes.progressSection}>
+              <Typography
+                size="md"
+                color="text"
+                colorBrightness="secondary"
+                className={classes.progressSectionTitle}
+              >
+                Created
+              </Typography>
+              <LinearProgress
+                variant="determinate"
+                value={77}
+                classes={{ barColorPrimary: classes.progressBarSuccess }}
+                className={classes.progress}
+              />
             </div>
             <div className={classes.progressSection}>
               <Typography
@@ -165,7 +219,7 @@ export default function QA_Dashboard(props) {
                 <Line
                   type="natural"
                   dataKey="value"
-                  stroke={theme.palette.success.main}
+                  stroke={theme.palette.primary.main}
                   strokeWidth={2}
                   dot={false}
                 />
@@ -192,63 +246,6 @@ export default function QA_Dashboard(props) {
                 <Typography size="md">32</Typography>
               </Grid>
             </Grid> */}
-          </Widget>
-        </Grid>
-        <Grid item lg={3} md={8} sm={6} xs={12}>
-          <Widget
-            title="System Updates"
-            upperTitle
-            className={classes.card}
-            bodyClass={classes.fullHeightBody}
-          >
-            <div className={classes.serverOverviewElement}>
-              <Typography
-                color="text"
-                colorBrightness="secondary"
-                className={classes.serverOverviewElementText}
-                noWrap
-              >
-                Alpha
-              </Typography>
-              <div className={classes.serverOverviewElementChartWrapper}>
-                <ResponsiveContainer height={50} width="99%">
-                  <AreaChart data={getRandomData(10)}>
-                    <Area
-                      type="natural"
-                      dataKey="value"
-                      stroke={theme.palette.secondary.main}
-                      fill={theme.palette.secondary.light}
-                      strokeWidth={2}
-                      fillOpacity="0.25"
-                    />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-            <div className={classes.serverOverviewElement}>
-              <Typography
-                color="text"
-                colorBrightness="secondary"
-                className={classes.serverOverviewElementText}
-                noWrap
-              >
-                Prod
-              </Typography>
-              <div className={classes.serverOverviewElementChartWrapper}>
-                <ResponsiveContainer height={50} width="99%">
-                  <AreaChart data={getRandomData(10)}>
-                    <Area
-                      type="natural"
-                      dataKey="value"
-                      stroke={theme.palette.primary.main}
-                      fill={theme.palette.primary.light}
-                      strokeWidth={2}
-                      fillOpacity="0.25"
-                    />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
           </Widget>
         </Grid>
         <Grid item lg={3} md={4} sm={6} xs={12}>
