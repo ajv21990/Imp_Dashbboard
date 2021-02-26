@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios'
+
 import {
   Grid,
   LinearProgress,
@@ -35,48 +36,75 @@ import Table from "./components/Table/Table";
 import BigStat from "./components/BigStat/BigStat";
 
 const mainChartData = getMainChartData();
-const PieChartData = [
+let PieChartData = [
   { name: "QA", value: 400, color: "primary" },
   { name: "System Updates", value: 300, color: "secondary" },
   { name: "Quality Control Change", value: 300, color: "warning" },
   { name: "Pending System Update", value: 200, color: "success" },
 ];
-const monthlyBug = {
-  created: 0, closed: 0, open: 0
-}
-// let config = {
-//   method: 'get',
-//   url: 'https://project.mkdecision.com/issues.json?query_id=115',
-//   headers: { 
-//     key: '92de8d1cb8c1d4ad6c1cd81917da1cc9e15b3920', 
-//     'Access-Control-Allow-Origin': 'http://localhost:3000'
-//   }
-// };
 
-// axios(config)
-// .then((response) => {
-//   console.log(JSON.stringify(response.data));
+// Grabbing Redmine Queries
+///CLOSED this month
+// axios.get("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=115&key=9a10d4bc69e91eb6e3fc37ba251f6244dbec50ef",{
+//   'Cookie': '_redmine_session=T1pzMlJERkFzMy8rY21hVkI2NFREbytRUmlWTTdXVFhqS3VmNi9pWjhKTlhMOWo0bEE2S3kwK0RXOGZQZmNlWGZ5Rkw4NUU4bDZOdmJWMjJDRVU1K0FiQi9XVXVwS2VGTHhDWFMxY1FLaVJaZitTNFpjVElveXdQbVZEUC9ZWjloS3hqMmZ5V2hBd1FwbG1uNkJLSzNnPT0tLXNpcHVBNUkzbVdBcjI5WDFZUSt2VGc9PQ%3D%3D--9e19b235e9f5938daf57693cf0e2ac803258eed6'
 // })
-// .catch((error) => {
-//   console.log(error);
-// });
-
-axios.get("https://project.mkdecision.com/issues.json?query_id=115",{
-  withCredentials: true,
-})
-.then(res => {
-  console.log(res)
-}).catch(error => {
-  console.log(error)
-})
+// .then(res => {
+//   console.log(res.data)
+// }).catch(error => {
+//   console.log(error)
+// })
 
 export default function QA_Dashboard(props) {
+// Setting constants for QA Data
+const [closedIssues,setClosedIssues] = useState([])
+const [openIssues,setOpenIssues] = useState([])
+const [createdIssues,setCreatedIssues] = useState([])
+
+
+// Hooks to grab data
+useEffect(() => {
+  fetch("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=115&key=9a10d4bc69e91eb6e3fc37ba251f6244dbec50ef")
+  .then( res => res.json())
+  .then(
+    (result) => {
+      setClosedIssues(result)
+    },
+    (error) =>{
+      console.log(error)
+    }
+  )
+},[])
+
+useEffect(() => {
+  fetch("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=118&key=9a10d4bc69e91eb6e3fc37ba251f6244dbec50ef")
+  .then( res => res.json())
+  .then(
+    (result) => {
+      setOpenIssues(result)
+    },
+    (error) =>{
+      console.log(error)
+    }
+  )
+},[])
+
+useEffect(() => {
+  fetch("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=117&key=9a10d4bc69e91eb6e3fc37ba251f6244dbec50ef")
+  .then( res => res.json())
+  .then(
+    (result) => {
+      setCreatedIssues(result)
+    },
+    (error) =>{
+      console.log(error)
+    }
+  )
+},[])
   var classes = useStyles();
   var theme = useTheme();
 
   // local
   var [mainChartState, setMainChartState] = useState("monthly");
-
   return (
     <>
       <PageTitle title="QA"/>
@@ -131,7 +159,7 @@ export default function QA_Dashboard(props) {
               </Typography>
               <LinearProgress
                 variant="determinate"
-                value={77}
+                value={createdIssues.total_count}
                 classes={{ barColorPrimary: classes.progressBarSuccess }}
                 className={classes.progress}
               />
@@ -147,7 +175,7 @@ export default function QA_Dashboard(props) {
               </Typography>
               <LinearProgress
                 variant="determinate"
-                value={77}
+                value={closedIssues.total_count}
                 classes={{ barColorPrimary: classes.progressBarPrimary }}
                 className={classes.progress}
               />
@@ -163,7 +191,7 @@ export default function QA_Dashboard(props) {
               </Typography>
               <LinearProgress
                 variant="determinate"
-                value={73}
+                value={openIssues.total_count}
                 classes={{ barColorPrimary: classes.progressBarWarning }}
                 className={classes.progress}
               />
@@ -179,7 +207,7 @@ export default function QA_Dashboard(props) {
                 <Typography color="text" colorBrightness="secondary" noWrap>
                   Open
                 </Typography>
-                <Typography size="md">77</Typography>
+                <Typography size="md">{openIssues.total_count}</Typography>
               </Grid>
               <Grid item xs={8}>
                 <Typography color="text" colorBrightness="secondary" noWrap>
@@ -436,6 +464,8 @@ function getRandomData(length, min, max, multiplier = 10, maxDiff = 10) {
 }
 
 function getMainChartData() {
+
+
   var resultArray = [];
   var tablet = getRandomData(31, 3500, 6500, 7500, 1000);
   var desktop = getRandomData(31, 1500, 7500, 7500, 1500);

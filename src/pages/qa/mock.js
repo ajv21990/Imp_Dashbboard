@@ -1,4 +1,10 @@
+import axios from 'axios'
+
+
+
+
 export default {
+  
   tasks: [
     {
       id: 0,
@@ -270,3 +276,55 @@ export default {
     }
   ]
 };
+
+
+
+// ///Created this month
+// axios.get("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=117&key=92de8d1cb8c1d4ad6c1cd81917da1cc9e15b3920",{
+//   'Cookie': '_redmine_session=T1pzMlJERkFzMy8rY21hVkI2NFREbytRUmlWTTdXVFhqS3VmNi9pWjhKTlhMOWo0bEE2S3kwK0RXOGZQZmNlWGZ5Rkw4NUU4bDZOdmJWMjJDRVU1K0FiQi9XVXVwS2VGTHhDWFMxY1FLaVJaZitTNFpjVElveXdQbVZEUC9ZWjloS3hqMmZ5V2hBd1FwbG1uNkJLSzNnPT0tLXNpcHVBNUkzbVdBcjI5WDFZUSt2VGc9PQ%3D%3D--9e19b235e9f5938daf57693cf0e2ac803258eed6'
+// })
+// .then(res => {
+//   console.log(res)
+// }).catch(error => {
+//   console.log(error)
+// })
+
+// ///Open in sprint
+// axios.get("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=118&key=92de8d1cb8c1d4ad6c1cd81917da1cc9e15b3920",{
+//   'Cookie': '_redmine_session=T1pzMlJERkFzMy8rY21hVkI2NFREbytRUmlWTTdXVFhqS3VmNi9pWjhKTlhMOWo0bEE2S3kwK0RXOGZQZmNlWGZ5Rkw4NUU4bDZOdmJWMjJDRVU1K0FiQi9XVXVwS2VGTHhDWFMxY1FLaVJaZitTNFpjVElveXdQbVZEUC9ZWjloS3hqMmZ5V2hBd1FwbG1uNkJLSzNnPT0tLXNpcHVBNUkzbVdBcjI5WDFZUSt2VGc9PQ%3D%3D--9e19b235e9f5938daf57693cf0e2ac803258eed6'
+// })
+// .then(res => {
+//   console.log(res)
+// }).catch(error => {
+//   console.log(error)
+// })
+
+// ///Customer Reported Bugs this month
+// axios.get("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=118&key=92de8d1cb8c1d4ad6c1cd81917da1cc9e15b3920",{
+//   'Cookie': '_redmine_session=T1pzMlJERkFzMy8rY21hVkI2NFREbytRUmlWTTdXVFhqS3VmNi9pWjhKTlhMOWo0bEE2S3kwK0RXOGZQZmNlWGZ5Rkw4NUU4bDZOdmJWMjJDRVU1K0FiQi9XVXVwS2VGTHhDWFMxY1FLaVJaZitTNFpjVElveXdQbVZEUC9ZWjloS3hqMmZ5V2hBd1FwbG1uNkJLSzNnPT0tLXNpcHVBNUkzbVdBcjI5WDFZUSt2VGc9PQ%3D%3D--9e19b235e9f5938daf57693cf0e2ac803258eed6'
+// })
+// .then(res => {
+//   console.log(res)
+// }).catch(error => {
+//   console.log(error)
+// })
+
+// ///Dev Defect Burn Time this month
+// axios.get("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/time_entries.json?query_id=120&key=92de8d1cb8c1d4ad6c1cd81917da1cc9e15b3920",{
+//   'Cookie': '_redmine_session=T1pzMlJERkFzMy8rY21hVkI2NFREbytRUmlWTTdXVFhqS3VmNi9pWjhKTlhMOWo0bEE2S3kwK0RXOGZQZmNlWGZ5Rkw4NUU4bDZOdmJWMjJDRVU1K0FiQi9XVXVwS2VGTHhDWFMxY1FLaVJaZitTNFpjVElveXdQbVZEUC9ZWjloS3hqMmZ5V2hBd1FwbG1uNkJLSzNnPT0tLXNpcHVBNUkzbVdBcjI5WDFZUSt2VGc9PQ%3D%3D--9e19b235e9f5938daf57693cf0e2ac803258eed6'
+// })
+// .then(res => {
+//   console.log(res)
+// }).catch(error => {
+//   console.log(error)
+// })
+
+// ///QA Defect Burn Time this month
+// axios.get("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/time_entries.json?query_id=120&key=92de8d1cb8c1d4ad6c1cd81917da1cc9e15b3920",{
+//   'Cookie': '_redmine_session=T1pzMlJERkFzMy8rY21hVkI2NFREbytRUmlWTTdXVFhqS3VmNi9pWjhKTlhMOWo0bEE2S3kwK0RXOGZQZmNlWGZ5Rkw4NUU4bDZOdmJWMjJDRVU1K0FiQi9XVXVwS2VGTHhDWFMxY1FLaVJaZitTNFpjVElveXdQbVZEUC9ZWjloS3hqMmZ5V2hBd1FwbG1uNkJLSzNnPT0tLXNpcHVBNUkzbVdBcjI5WDFZUSt2VGc9PQ%3D%3D--9e19b235e9f5938daf57693cf0e2ac803258eed6'
+// })
+// .then(res => {
+//   console.log(res)
+// }).catch(error => {
+//   console.log(error)
+// })
