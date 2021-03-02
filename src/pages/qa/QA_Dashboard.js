@@ -37,10 +37,8 @@ import BigStat from "./components/BigStat/BigStat";
 
 const mainChartData = getMainChartData();
 let PieChartData = [
-  { name: "QA", value: 400, color: "primary" },
-  { name: "System Updates", value: 300, color: "secondary" },
-  { name: "Quality Control Change", value: 300, color: "warning" },
-  { name: "Pending System Update", value: 200, color: "success" },
+  { name: "Internally Reported", value: 0, color: "warning" },
+  { name: "Customer Reported", value: 0, color: "primary" },
 ];
 
 // Grabbing Redmine Queries
@@ -59,47 +57,111 @@ export default function QA_Dashboard(props) {
 const [closedIssues,setClosedIssues] = useState([])
 const [openIssues,setOpenIssues] = useState([])
 const [createdIssues,setCreatedIssues] = useState([])
+const [changesIssues,setChangesIssues] = useState([])
+const [janIssues,setJanIssues] = useState([])
+const [febIssues,setFebIssues] = useState([])
+const [cusReportBugs,setCusReportBugs] = useState([])
+
+
 
 
 // Hooks to grab data
-useEffect(() => {
-  fetch("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=115&key=9a10d4bc69e91eb6e3fc37ba251f6244dbec50ef")
-  .then( res => res.json())
-  .then(
-    (result) => {
-      setClosedIssues(result)
-    },
-    (error) =>{
-      console.log(error)
-    }
-  )
-},[])
+// useEffect(() => {
+//   fetch("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=115&key=9a10d4bc69e91eb6e3fc37ba251f6244dbec50ef")
+//   .then( res => res.json())
+//   .then(
+//     (result) => {
+//       setClosedIssues(result)
+//     },
+//     (error) =>{
+//       console.log(error)
+//     }
+//   )
+// },[])
 
-useEffect(() => {
-  fetch("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=118&key=9a10d4bc69e91eb6e3fc37ba251f6244dbec50ef")
-  .then( res => res.json())
-  .then(
-    (result) => {
-      setOpenIssues(result)
-    },
-    (error) =>{
-      console.log(error)
-    }
-  )
-},[])
+// useEffect(() => {
+//   fetch("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=118&key=9a10d4bc69e91eb6e3fc37ba251f6244dbec50ef")
+//   .then( res => res.json())
+//   .then(
+//     (result) => {
+//       setOpenIssues(result)
+//     },
+//     (error) =>{
+//       console.log(error)
+//     }
+//   )
+// },[])
 
-useEffect(() => {
-  fetch("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=117&key=9a10d4bc69e91eb6e3fc37ba251f6244dbec50ef")
-  .then( res => res.json())
-  .then(
-    (result) => {
-      setCreatedIssues(result)
-    },
-    (error) =>{
-      console.log(error)
-    }
-  )
-},[])
+// useEffect(() => {
+//   fetch("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=117&key=9a10d4bc69e91eb6e3fc37ba251f6244dbec50ef")
+//   .then( res => res.json())
+//   .then(
+//     (result) => {
+//       setCreatedIssues(result)
+//     },
+//     (error) =>{
+//       console.log(error)
+//     }
+//   )
+// },[])
+
+// useEffect(() => {
+//   fetch("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=125&key=9a10d4bc69e91eb6e3fc37ba251f6244dbec50ef")
+//   .then( res => res.json())
+//   .then(
+//     (result) => {
+//       setChangesIssues(result)
+//     },
+//     (error) =>{
+//       console.log(error)
+//     }
+//   )
+// },[])
+
+//   useEffect(() => {
+//       fetch("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=126&key=9a10d4bc69e91eb6e3fc37ba251f6244dbec50ef")
+//       .then( res => res.json())
+//       .then(
+//         (result) => {
+//           setJanIssues(result)
+//         },
+//         (error) =>{
+//           console.log(error)
+//         }
+//       )
+//     },[])
+
+//     useEffect(() => {
+//       fetch("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=127&key=9a10d4bc69e91eb6e3fc37ba251f6244dbec50ef")
+//       .then( res => res.json())
+//       .then(
+//         (result) => {
+//           setFebIssues(result)
+//         },
+//         (error) =>{
+//           console.log(error)
+//         }
+//       )
+//     },[])
+
+//     useEffect(() => {
+//       fetch("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=119&key=9a10d4bc69e91eb6e3fc37ba251f6244dbec50ef")
+//       .then( res => res.json())
+//       .then(
+//         (result) => {
+//           setCusReportBugs(result)
+//         },
+//         (error) =>{
+//           console.log(error)
+//         }
+//       )
+//     },[])
+
+
+  PieChartData[1].value = cusReportBugs.total_count
+  PieChartData[0].value = createdIssues.total_count - cusReportBugs.total_count
+
+
   var classes = useStyles();
   var theme = useTheme();
 
@@ -205,75 +267,23 @@ useEffect(() => {
             >
               <Grid item xs={4}>
                 <Typography color="text" colorBrightness="secondary" noWrap>
+                  Created
+                </Typography>
+                <Typography size="md">{createdIssues.total_count}</Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography color="text" colorBrightness="secondary" noWrap>
+                  Closed
+                </Typography>
+                <Typography size="md">{closedIssues.total_count}</Typography>
+              </Grid>
+              <Grid item xs={4}>
+                <Typography color="text" colorBrightness="secondary" noWrap>
                   Open
                 </Typography>
                 <Typography size="md">{openIssues.total_count}</Typography>
               </Grid>
-              <Grid item xs={8}>
-                <Typography color="text" colorBrightness="secondary" noWrap>
-                  QA Changes Needed
-                </Typography>
-                <Typography size="md">73</Typography>
-              </Grid>
             </Grid>
-          </Widget>
-        </Grid>
-        <Grid item lg={3} md={4} sm={6} xs={12}>
-          <Widget
-            title="Bugs Resolved Per Sprint"
-            upperTitle
-            bodyClass={classes.fullHeightBody}
-            className={classes.card}
-          >
-            <div className={classes.visitsNumberContainer}>
-              <Grid container item alignItems={"center"}>
-                <Grid item xs={6}>
-              <Typography size="xl" weight="medium" noWrap>
-                12,678
-              </Typography>
-                </Grid>
-                <Grid item xs={6}>
-              <LineChart
-                width={100}
-                height={30}
-                data={[
-                  { value: 10 },
-                  { value: 15 },
-                  { value: 10 },
-                  { value: 17 },
-                  { value: 18 },
-                ]}
-              >
-                <Line
-                  type="natural"
-                  dataKey="value"
-                  stroke={theme.palette.primary.main}
-                  strokeWidth={2}
-                  dot={false}
-                />
-              </LineChart>
-                </Grid>
-              </Grid>
-            </div>
-            {/* <Grid
-              container
-              direction="row"
-              justify="space-between"
-              alignItems="center"
-            >
-              <Grid item xs={4}>
-                <Typography color="text" colorBrightness="secondary" noWrap>
-                  Created
-                </Typography>
-                <Typography size="md">860</Typography>
-              </Grid>
-              <Grid item xs={8}>
-                <Typography color="text" colorBrightness="secondary" noWrap>
-                  Closed
-                </Typography>
-                <Typography size="md">32</Typography>
-              </Grid>
-            </Grid> */}
           </Widget>
         </Grid>
         <Grid item lg={3} md={4} sm={6} xs={12}>
@@ -314,6 +324,42 @@ useEffect(() => {
                 </div>
               </Grid>
             </Grid>
+          </Widget>
+        </Grid>
+        <Grid item lg={3} md={4} sm={6} xs={12}>
+          <Widget
+            title="Bugs Detected This Year"
+            upperTitle
+            bodyClass={classes.fullHeightBody}
+            className={classes.card}
+          >
+            <div className={classes.visitsNumberContainer}>
+              <Grid container item alignItems={"center"}>
+                <Grid item xs={6}>
+              <Typography size="xl" weight="medium" noWrap>
+                {janIssues.total_count + febIssues.total_count}
+              </Typography>
+                </Grid>
+                <Grid item xs={6}>
+              <LineChart
+                width={100}
+                height={30}
+                data={[
+                  { value: janIssues.total_count },
+                  { value: febIssues.total_count },
+                ]}
+              >
+                <Line
+                  type="natural"
+                  dataKey="value"
+                  stroke={theme.palette.primary.main}
+                  strokeWidth={2}
+                  dot={false}
+                />
+              </LineChart>
+                </Grid>
+              </Grid>
+            </div>
           </Widget>
         </Grid>
         <Grid item xs={12}>
@@ -369,7 +415,7 @@ useEffect(() => {
                 data={mainChartData}
               >
                 <YAxis
-                  ticks={[0, 2500, 5000, 7500]}
+                  ticks={[0, 100, 200, 300]}
                   tick={{ fill: theme.palette.text.hint + "80", fontSize: 14 }}
                   stroke={theme.palette.text.hint + "80"}
                   tickLine={false}
@@ -410,15 +456,9 @@ useEffect(() => {
             </ResponsiveContainer>
           </Widget>
         </Grid>
-        {/* Could possibly use in the future but commenting out charts for now */}
-        {/* {mock.bigStat.map(stat => (
-          <Grid item md={4} sm={6} xs={12} key={stat.product}>
-            <BigStat {...stat} />
-          </Grid>
-        ))} */}
         <Grid item xs={12}>
           <Widget
-            title="Bugs per Client"
+            title="Client Monthly Stats"
             upperTitle
             noBodyPadding
             bodyClass={classes.tableWidget}

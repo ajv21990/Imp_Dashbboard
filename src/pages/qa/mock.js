@@ -1,8 +1,3 @@
-import axios from 'axios'
-
-
-
-
 export default {
   
   tasks: [
@@ -138,176 +133,117 @@ export default {
       id: 0,
       name: "AM Bank",
       pm: "Max",
-      alpha: "Y/N",
-      burn_time: "$25 224.2",
-      date: "11 May 2017",
-      city: "Otsego",
-      status: "Sent"
+      hours: "$25 224.2",
+      bugs: "",
+      status: "Live"
     },
     {
       id: 1,
       name: "BBOW",
       pm: "Bailey",
-      alpha: "Y/N",
-      burn_time: "$1 254.2",
-      date: "4 Jun 2017",
-      city: "Fivepointville",
-      status: "Sent"
+      hours: "$1 254.2",
+      bugs: "",
+      status: "Live"
     },
     {
       id: 2,
       name: "BBOK",
       pm: "Bailey",
-      alpha: "Y/N",
-      burn_time: "$1 570.0",
-      date: "27 Aug 2017",
-      city: "Leadville North",
-      status: "Pending"
+      hours: "$1 570.0",
+      bugs: "",
+      status: "Live"
     },
     {
       id: 3,
       name: "Beneficial State Bank",
       pm: "Bailey",
-      alpha: "Y/N",
-      burn_time: "$5 224.5",
-      date: "19 Feb 2018",
-      city: "Seaforth",
-      status: "Declined"
+      hours: "$5 224.5",
+      bugs: "",
+      status: "Live"
     },
     {
       id: 4,
       name: "CSB Newcastle",
       pm: "Max",
-      alpha: "Y/N",
-      burn_time: "$43 594.7",
-      date: "1 Mar 2018",
-      city: "Hanoverton",
-      status: "Sent"
+      hours: "$43 594.7",
+      bugs: "",
+      status: "Requirements"
     },
     {
       id: 5,
       name: "Equitable Bank",
       pm: "Bailey",
-      alpha: "Y/N",
-      burn_time: "$43 594.7",
-      date: "1 Mar 2018",
-      city: "Hanoverton",
-      status: "Sent"
+      hours: "$43 594.7",
+      bugs: "",
+      status: "Requirements"
     },
     {
       id: 6,
       name: "Evergreen Bank",
       pm: "Bailey",
-      alpha: "Y/N",
-      burn_time: "$43 594.7",
-      date: "1 Mar 2018",
-      city: "Hanoverton",
-      status: "Sent"
+      hours: "$43 594.7",
+      bugs: "",
+      status: "Development"
     },
     {
       id: 7,
       name: "First Bank of Alabama",
       pm: "Max",
-      alpha: "Y/N",
-      burn_time: "$43 594.7",
-      date: "1 Mar 2018",
-      city: "Hanoverton",
-      status: "Sent"
+      hours: "$43 594.7",
+      bugs: "",
+      status: "Live"
     },
     {
       id: 8,
       name: "FNB Las Animas",
       pm: "Max",
-      alpha: "Y/N",
-      burn_time: "$43 594.7",
-      date: "1 Mar 2018",
-      city: "Hanoverton",
-      status: "Sent"
+      hours: "$43 594.7",
+      bugs: "",
+      status: "Live"
     },
     {
       id: 9,
       name: "ICBA",
       pm: "Bailey",
-      alpha: "Y/N",
-      burn_time: "$43 594.7",
-      date: "1 Mar 2018",
-      city: "Hanoverton",
-      status: "Sent"
+      hours: "$43 594.7",
+      bugs: "",
+      status: "Live"
     },
     {
       id: 10,
       name: "Sutton Bank",
       pm: "Bailey",
-      alpha: "Y/N",
-      burn_time: "$43 594.7",
-      date: "1 Mar 2018",
-      city: "Hanoverton",
-      status: "Sent"
+      hours: "$43 594.7",
+      bugs: "",
+      status: "Live"
     },
     {
       id: 11,
       name: "TCM",
       pm: "Max",
-      alpha: "Y/N",
-      burn_time: "$43 594.7",
-      date: "1 Mar 2018",
-      city: "Hanoverton",
-      status: "Sent"
+      hours: "$43 594.7",
+      bugs: "",
+      status: "Development"
     },
     {
       id: 12,
       name: "UBB",
       pm: "Bailey",
-      alpha: "Y/N",
-      burn_time: "$43 594.7",
-      date: "1 Mar 2018",
-      city: "Hanoverton",
-      status: "Sent"
+      hours: "$43 594.7",
+      bugs: "",
+      status: "Live"
     },
     {
       id: 13,
       name: "Washington Federal Bank",
       pm: "Bailey",
-      alpha: "Y/N",
-      burn_time: "$43 594.7",
-      date: "1 Mar 2018",
-      city: "Hanoverton",
-      status: "Sent"
+      hours: "$43 594.7",
+      bugs: "",
+      status: "Requirements"
     }
   ]
 };
 
-
-
-// ///Created this month
-// axios.get("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=117&key=92de8d1cb8c1d4ad6c1cd81917da1cc9e15b3920",{
-//   'Cookie': '_redmine_session=T1pzMlJERkFzMy8rY21hVkI2NFREbytRUmlWTTdXVFhqS3VmNi9pWjhKTlhMOWo0bEE2S3kwK0RXOGZQZmNlWGZ5Rkw4NUU4bDZOdmJWMjJDRVU1K0FiQi9XVXVwS2VGTHhDWFMxY1FLaVJaZitTNFpjVElveXdQbVZEUC9ZWjloS3hqMmZ5V2hBd1FwbG1uNkJLSzNnPT0tLXNpcHVBNUkzbVdBcjI5WDFZUSt2VGc9PQ%3D%3D--9e19b235e9f5938daf57693cf0e2ac803258eed6'
-// })
-// .then(res => {
-//   console.log(res)
-// }).catch(error => {
-//   console.log(error)
-// })
-
-// ///Open in sprint
-// axios.get("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=118&key=92de8d1cb8c1d4ad6c1cd81917da1cc9e15b3920",{
-//   'Cookie': '_redmine_session=T1pzMlJERkFzMy8rY21hVkI2NFREbytRUmlWTTdXVFhqS3VmNi9pWjhKTlhMOWo0bEE2S3kwK0RXOGZQZmNlWGZ5Rkw4NUU4bDZOdmJWMjJDRVU1K0FiQi9XVXVwS2VGTHhDWFMxY1FLaVJaZitTNFpjVElveXdQbVZEUC9ZWjloS3hqMmZ5V2hBd1FwbG1uNkJLSzNnPT0tLXNpcHVBNUkzbVdBcjI5WDFZUSt2VGc9PQ%3D%3D--9e19b235e9f5938daf57693cf0e2ac803258eed6'
-// })
-// .then(res => {
-//   console.log(res)
-// }).catch(error => {
-//   console.log(error)
-// })
-
-// ///Customer Reported Bugs this month
-// axios.get("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=118&key=92de8d1cb8c1d4ad6c1cd81917da1cc9e15b3920",{
-//   'Cookie': '_redmine_session=T1pzMlJERkFzMy8rY21hVkI2NFREbytRUmlWTTdXVFhqS3VmNi9pWjhKTlhMOWo0bEE2S3kwK0RXOGZQZmNlWGZ5Rkw4NUU4bDZOdmJWMjJDRVU1K0FiQi9XVXVwS2VGTHhDWFMxY1FLaVJaZitTNFpjVElveXdQbVZEUC9ZWjloS3hqMmZ5V2hBd1FwbG1uNkJLSzNnPT0tLXNpcHVBNUkzbVdBcjI5WDFZUSt2VGc9PQ%3D%3D--9e19b235e9f5938daf57693cf0e2ac803258eed6'
-// })
-// .then(res => {
-//   console.log(res)
-// }).catch(error => {
-//   console.log(error)
-// })
 
 // ///Dev Defect Burn Time this month
 // axios.get("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/time_entries.json?query_id=120&key=92de8d1cb8c1d4ad6c1cd81917da1cc9e15b3920",{
