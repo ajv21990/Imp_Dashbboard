@@ -23,7 +23,9 @@ import {
   YAxis,
   XAxis,
   Legend,
-  Tooltip
+  Tooltip,
+  BarChart,
+  Bar
 } from "recharts";
 // styles
 import useStyles from "./styles";
@@ -38,6 +40,8 @@ import Table from "./components/Table/Table";
 import BigStat from "./components/BigStat/BigStat";
 
 const mainChartData = getMainChartData();
+const ProductChartData = getProductBurnData();
+
 let PieChartData = [
   { name: "Internally Reported", value: 0, color: "warning" },
   { name: "Customer Reported", value: 0, color: "primary" },
@@ -159,7 +163,7 @@ const [cusReportBugs,setCusReportBugs] = useState([])
   var theme = useTheme();
 
   // local
-  var [mainChartState, setMainChartState] = useState("monthly");
+  var [mainChartState, setMainChartState] = useState("engineer");
   return (
     <>
       <PageTitle title="QA"/>
@@ -367,11 +371,12 @@ const [cusReportBugs,setCusReportBugs] = useState([])
                 >
                   Defect Burn Time
                 </Typography>
+                {(mainChartState === "engineer")?
                 <div className={classes.mainChartHeaderLabels}>
                   <div className={classes.mainChartHeaderLabel}>
                     <Dot color="warning" />
                     <Typography className={classes.mainChartLegentElement}>
-                      QA
+                    Fulfillment
                     </Typography>
                   </div>
                   <div className={classes.mainChartHeaderLabel}>
@@ -380,7 +385,14 @@ const [cusReportBugs,setCusReportBugs] = useState([])
                       Dev
                     </Typography>
                   </div>
+                </div>:
+                <div className={classes.mainChartHeaderLabels}>
+                <div className={classes.mainChartHeaderLabel}>
+                  <Typography className={classes.mainChartLegentElement}>
+                    Product
+                  </Typography>
                 </div>
+                </div>}
                 <Select
                   value={mainChartState}
                   onChange={e => setMainChartState(e.target.value)}
@@ -395,13 +407,14 @@ const [cusReportBugs,setCusReportBugs] = useState([])
                   }
                   autoWidth
                 >
-                  <MenuItem value="daily">Daily</MenuItem>
-                  <MenuItem value="weekly">Weekly</MenuItem>
-                  <MenuItem value="monthly">Monthly</MenuItem>
+                  <MenuItem value="engineer">Engineer</MenuItem>
+                  {/* <MenuItem value="weekly">Client</MenuItem> */}
+                  <MenuItem value="product">Product</MenuItem>
                 </Select>
               </div>
             }
           >
+            {(mainChartState === "engineer")?
             <ResponsiveContainer width="100%" minWidth={500} height={350}>
               <ComposedChart
                 margin={{ top: 0, right: -15, left: -15, bottom: 0 }}
@@ -409,14 +422,14 @@ const [cusReportBugs,setCusReportBugs] = useState([])
               >
                 <YAxis
                   ticks={[0, 75, 150, 225]}
-                  tick={{ fill: theme.palette.text.hint + "80", fontSize: 14 }}
-                  stroke={theme.palette.text.hint + "80"}
+                  tick={{ fill: theme.palette.text.primary + "80", fontSize: 14 }}
+                  stroke={theme.palette.text.primary + "80"}
                 />
                 <XAxis
                 dataKey = 'month'
                   tickFormatter={i => i+" 21"}
-                  tick={{ fill: theme.palette.text.hint + "80", fontSize: 14 }}
-                  stroke={theme.palette.text.hint + "80"}
+                  tick={{ fill: theme.palette.text.primary + "80", fontSize: 14 }}
+                  stroke={theme.palette.text.primary + "80"}
                 />
                 <Line
                   type="linear"
@@ -430,7 +443,7 @@ const [cusReportBugs,setCusReportBugs] = useState([])
                 />
                 <Line
                   type="linear"
-                  dataKey="QA"
+                  dataKey="Fulfillment"
                   stroke={theme.palette.warning.main}
                   strokeWidth={2}
                   dot={{
@@ -442,21 +455,44 @@ const [cusReportBugs,setCusReportBugs] = useState([])
                 <Tooltip />
               </ComposedChart>
             </ResponsiveContainer>
+            :             
+            <ResponsiveContainer width="100%" minWidth={500} height={350}>
+            <BarChart
+              margin={{ top: 0, right: -15, left: -15, bottom: 0 }}
+              data={ProductChartData}
+            >
+              <YAxis
+                ticks={[0, 5, 10, 15, 20, 25]}
+                tick={{ fill: theme.palette.text.primary + "80", fontSize: 14 }}
+                stroke={theme.palette.text.primary + "80"}
+              />
+              <XAxis
+              dataKey = 'product'
+                tickFormatter={i => i}
+                tick={{ fill: theme.palette.text.primary + "80", fontSize: 14 }}
+                stroke={theme.palette.text.primary + "80"}
+              />
+              <Tooltip />
+              <Bar
+                dataKey="Jan"
+                fill="#1096CB"  
+              />
+              <Bar
+                dataKey="Feb"
+                fill="#FF5C93"  
+              />
+              <Bar
+                dataKey="Mar"
+                fill= "#3CD4A0"  
+              />
+              
+            </BarChart>
+          </ResponsiveContainer>}
           </Widget>
         </Grid>
         <Grid item xs={12}>
           <Widget
             title="Client Monthly Stats"
-            upperTitle
-            noBodyPadding
-            bodyClass={classes.tableWidget}
-          >
-            <Table data={mock.table} />
-          </Widget>
-        </Grid>
-        <Grid item xs={12}>
-          <Widget
-            title="Bugs per Product"
             upperTitle
             noBodyPadding
             bodyClass={classes.tableWidget}
@@ -492,17 +528,37 @@ function getRandomData(length, min, max, multiplier = 10, maxDiff = 10) {
 }
 
 function getMainChartData() {
-
-
   var resultArray = [];
-  var QA = [69.43,67.51,76.34];
+  var Fulfillment = [69.43,67.51,76.34];
   var Dev = [80.75,164,156.63];
   let month = ["Jan", 'Feb', 'Mar', 'Apr', 'May', 'Jun', "July", 'Aug', "Sept", "Oct", 'Nov','Dec']
   for (let i = 0; i < month.length; i++) {
     resultArray.push({
-      QA: QA[i],
+      Fulfillment: Fulfillment[i],
       Dev: Dev[i],
       month: month[i]
+    });
+  }
+  return resultArray;
+}
+
+function getProductBurnData(){
+  var resultArray = [];
+  var Jan = [6.35,0,31.01,0,20.47,1.80];
+
+
+  var Feb = [1.15,5.83,3.74,0,18.07,3.21];
+
+  var Mar = [1.95,1.45,0,0,.17,0];
+
+
+  let product = ["Store", 'CCOS', 'Deposits', 'Integrations', 'Vendor Dashboard', 'Close Services']
+  for (let i = 0; i < product.length; i++) {
+    resultArray.push({
+      Jan : Jan[i],
+      Feb : Feb[i],
+      Mar : Mar[i],
+      product: product[i]
     });
   }
   return resultArray;
