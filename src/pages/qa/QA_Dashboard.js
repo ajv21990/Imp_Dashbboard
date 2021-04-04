@@ -22,6 +22,8 @@ import {
   Cell,
   YAxis,
   XAxis,
+  Legend,
+  Tooltip
 } from "recharts";
 // styles
 import useStyles from "./styles";
@@ -41,16 +43,7 @@ let PieChartData = [
   { name: "Customer Reported", value: 0, color: "primary" },
 ];
 
-// Grabbing Redmine Queries
-///CLOSED this month
-// axios.get("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=115&key=9a10d4bc69e91eb6e3fc37ba251f6244dbec50ef",{
-//   'Cookie': '_redmine_session=T1pzMlJERkFzMy8rY21hVkI2NFREbytRUmlWTTdXVFhqS3VmNi9pWjhKTlhMOWo0bEE2S3kwK0RXOGZQZmNlWGZ5Rkw4NUU4bDZOdmJWMjJDRVU1K0FiQi9XVXVwS2VGTHhDWFMxY1FLaVJaZitTNFpjVElveXdQbVZEUC9ZWjloS3hqMmZ5V2hBd1FwbG1uNkJLSzNnPT0tLXNpcHVBNUkzbVdBcjI5WDFZUSt2VGc9PQ%3D%3D--9e19b235e9f5938daf57693cf0e2ac803258eed6'
-// })
-// .then(res => {
-//   console.log(res.data)
-// }).catch(error => {
-//   console.log(error)
-// })
+
 
 export default function QA_Dashboard(props) {
 // Setting constants for QA Data
@@ -415,35 +408,29 @@ const [cusReportBugs,setCusReportBugs] = useState([])
                 data={mainChartData}
               >
                 <YAxis
-                  ticks={[0, 100, 200, 300]}
+                  ticks={[0, 75, 150, 225]}
                   tick={{ fill: theme.palette.text.hint + "80", fontSize: 14 }}
                   stroke={theme.palette.text.hint + "80"}
-                  tickLine={false}
                 />
                 <XAxis
-                  tickFormatter={i => i + 1}
+                dataKey = 'month'
+                  tickFormatter={i => i+" 21"}
                   tick={{ fill: theme.palette.text.hint + "80", fontSize: 14 }}
                   stroke={theme.palette.text.hint + "80"}
-                  tickLine={false}
-                />
-                <Area
-                  type="natural"
-                  dataKey="desktop"
-                  fill={theme.palette.background.light}
-                  strokeWidth={0}
-                  activeDot={false}
-                />
-                <Line
-                  type="natural"
-                  dataKey="mobile"
-                  stroke={theme.palette.primary.main}
-                  strokeWidth={2}
-                  dot={false}
-                  activeDot={false}
                 />
                 <Line
                   type="linear"
-                  dataKey="tablet"
+                  dataKey="Dev"
+                  stroke={theme.palette.primary.main}
+                  strokeWidth={2}
+                  dot={{
+                    strokeWidth: 2,
+                    fill: theme.palette.warning.dark,
+                  }}                  
+                />
+                <Line
+                  type="linear"
+                  dataKey="QA"
                   stroke={theme.palette.warning.main}
                   strokeWidth={2}
                   dot={{
@@ -452,6 +439,7 @@ const [cusReportBugs,setCusReportBugs] = useState([])
                     fill: theme.palette.warning.main,
                   }}
                 />
+                <Tooltip />
               </ComposedChart>
             </ResponsiveContainer>
           </Widget>
@@ -507,17 +495,15 @@ function getMainChartData() {
 
 
   var resultArray = [];
-  var tablet = getRandomData(31, 3500, 6500, 7500, 1000);
-  var desktop = getRandomData(31, 1500, 7500, 7500, 1500);
-  var mobile = getRandomData(31, 1500, 7500, 7500, 1500);
-
-  for (let i = 0; i < tablet.length; i++) {
+  var QA = [69.43,67.51,76.34];
+  var Dev = [80.75,164,156.63];
+  let month = ["Jan", 'Feb', 'Mar', 'Apr', 'May', 'Jun', "July", 'Aug', "Sept", "Oct", 'Nov','Dec']
+  for (let i = 0; i < month.length; i++) {
     resultArray.push({
-      tablet: tablet[i].value,
-      desktop: desktop[i].value,
-      mobile: mobile[i].value,
+      QA: QA[i],
+      Dev: Dev[i],
+      month: month[i]
     });
   }
-
   return resultArray;
 }

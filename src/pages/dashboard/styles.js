@@ -50,6 +50,9 @@ export default makeStyles(theme => ({
   progressBarWarning: {
     backgroundColor: theme.palette.warning.main,
   },
+  progressBarSuccess: {
+    backgroundColor: theme.palette.success.main,
+  },
   performanceLegendWrapper: {
     display: "flex",
     flexGrow: 1,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Grid,
   LinearProgress,
@@ -48,19 +48,89 @@ export default function Dashboard(props) {
 
   // local
   var [mainChartState, setMainChartState] = useState("monthly");
+// Setting constants for QA Data
+const [closedIssues,setClosedIssues] = useState([])
+const [openIssues,setOpenIssues] = useState([])
+const [createdIssues,setCreatedIssues] = useState([])
+const [totalIssues,setTotalIssues] = useState([])
+
+
+
+// Hooks to grab data
+useEffect(() => {
+  fetch("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=129&key=9a10d4bc69e91eb6e3fc37ba251f6244dbec50ef")
+  .then( res => res.json())
+  .then(
+    (result) => {
+      setCreatedIssues(result)
+    },
+    (error) =>{
+      console.log(error)
+    }
+  )
+},[])
+
+useEffect(() => {
+  fetch("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=131&key=9a10d4bc69e91eb6e3fc37ba251f6244dbec50ef")
+  .then( res => res.json())
+  .then(
+    (result) => {
+      setClosedIssues(result)
+    },
+    (error) =>{
+      console.log(error)
+    }
+  )
+},[])
+
+useEffect(() => {
+  fetch("https://cors-anywhere.herokuapp.com/https://project.mkdecision.com/issues.json?query_id=130&key=9a10d4bc69e91eb6e3fc37ba251f6244dbec50ef")
+  .then( res => res.json())
+  .then(
+    (result) => {
+      setTotalIssues(result)
+    },
+    (error) =>{
+      console.log(error)
+    }
+  )
+},[])
+
+let percentageComplete = totalIssues.total_count - closedIssues.total_count
+percentageComplete = parseFloat(percentageComplete).toFixed(2)+"%"
 
   return (
     <>
       <PageTitle title="Current Sprint"/>
       <Grid container spacing={4}>
-        <Grid item lg={3} md={8} sm={6} xs={12}>
+      <Grid item lg={3} md={8} sm={6} xs={12}>
           <Widget
-            title="Issues This Sprint"
+            title="Current Sprint Issues"
             upperTitle
             className={classes.card}
             bodyClass={classes.fullHeightBody}
           >
             <div className={classes.performanceLegendWrapper}>
+            <div className={classes.legendElement}>
+                <Dot color="primary" />
+                <Typography
+                  color="text"
+                  colorBrightness="secondary"
+                  className={classes.legendElementText}
+                >
+                  Closed
+                </Typography>
+              </div>
+            <div className={classes.legendElement}>
+                <Dot color="success" />
+                <Typography
+                  color="text"
+                  colorBrightness="secondary"
+                  className={classes.legendElementText}
+                >
+                  Created
+                </Typography>
+              </div>
               <div className={classes.legendElement}>
                 <Dot color="warning" />
                 <Typography
@@ -69,16 +139,6 @@ export default function Dashboard(props) {
                   className={classes.legendElementText}
                 >
                   Open
-                </Typography>
-              </div>
-              <div className={classes.legendElement}>
-                <Dot color="primary" />
-                <Typography
-                  color="text"
-                  colorBrightness="secondary"
-                  className={classes.legendElementText}
-                >
-                  Closed
                 </Typography>
               </div>
             </div>
@@ -93,11 +153,28 @@ export default function Dashboard(props) {
               </Typography>
               <LinearProgress
                 variant="determinate"
-                value={77}
+                value={closedIssues.total_count}
                 classes={{ barColorPrimary: classes.progressBarPrimary }}
                 className={classes.progress}
               />
             </div>
+            <div className={classes.progressSection}>
+              <Typography
+                size="md"
+                color="text"
+                colorBrightness="primary"
+                className={classes.progressSectionTitle}
+              >
+                Created
+              </Typography>
+              <LinearProgress
+                variant="determinate"
+                value={createdIssues.total_count}
+                classes={{ barColorPrimary: classes.progressBarSuccess }}
+                className={classes.progress}
+              />
+            </div>
+
             <div>
               <Typography
                 size="md"
@@ -109,11 +186,44 @@ export default function Dashboard(props) {
               </Typography>
               <LinearProgress
                 variant="determinate"
-                value={73}
+                value={openIssues.total_count}
                 classes={{ barColorPrimary: classes.progressBarWarning }}
                 className={classes.progress}
               />
             </div>
+            <br/>
+            <Grid
+              container
+              direction="row"
+              justify="space-between"
+              alignItems="center"
+            >
+              <Grid item xs={3}>
+                <Typography color="text" colorBrightness="secondary" noWrap>
+                  Closed
+                </Typography>
+                <Typography size="md">{closedIssues.total_count}</Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <Typography color="text" colorBrightness="secondary" noWrap>
+                  Created
+                </Typography>
+                <Typography size="md">{createdIssues.total_count}</Typography>
+              </Grid>
+
+              <Grid item xs={3}>
+                <Typography color="text" colorBrightness="secondary" noWrap>
+                  Open
+                </Typography>
+                <Typography size="md">{openIssues.total_count}</Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <Typography color="text" colorBrightness="secondary" noWrap>
+                  % Complete
+                </Typography>
+                <Typography size="md">{parseFloat(totalIssues.total_count - closedIssues.total_count).toFixed(2) }</Typography>
+              </Grid>
+            </Grid>
           </Widget>
         </Grid>
         <Grid item lg={3} md={4} sm={6} xs={12}>
