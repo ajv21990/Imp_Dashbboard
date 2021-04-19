@@ -41,6 +41,7 @@ import BigStat from "./components/BigStat/BigStat";
 
 const mainChartData = getMainChartData();
 const ProductChartData = getProductBurnData();
+const ClientChartData = getClientBurnData();
 
 let PieChartData = [
   { name: "Internally Reported", value: 0, color: "warning" },
@@ -164,6 +165,8 @@ const [cusReportBugs,setCusReportBugs] = useState([])
 
   // local
   var [mainChartState, setMainChartState] = useState("engineer");
+  var [ClientChartState, setClientChartState] = useState("YTD");
+
   return (
     <>
       <PageTitle title="QA"/>
@@ -369,7 +372,7 @@ const [cusReportBugs,setCusReportBugs] = useState([])
                   color="text"
                   colorBrightness="secondary"
                 >
-                  Defect Burn Time
+                  Defect Burn Time (hours)
                 </Typography>
                 {(mainChartState === "engineer")?
                 <div className={classes.mainChartHeaderLabels}>
@@ -490,7 +493,7 @@ const [cusReportBugs,setCusReportBugs] = useState([])
           </ResponsiveContainer>}
           </Widget>
         </Grid>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <Widget
             title="Client Monthly Stats"
             upperTitle
@@ -498,6 +501,113 @@ const [cusReportBugs,setCusReportBugs] = useState([])
             bodyClass={classes.tableWidget}
           >
             <Table data={mock.table} />
+          </Widget>
+        </Grid> */}
+        <Grid item xs={12}>
+          <Widget
+            bodyClass={classes.mainChartBody}
+            header={
+              <div className={classes.mainChartHeader}>
+                <Typography
+                  variant="h5"
+                  color="text"
+                  colorBrightness="secondary"
+                >
+                  Client Defect Tracker
+                </Typography>
+                <div className={classes.mainChartHeaderLabels}>
+                <div className={classes.mainChartHeaderLabel}>
+                  <Typography className={classes.mainChartLegentElement}>
+                    Issues vs Burn Time
+                  </Typography>
+                </div>
+                </div>
+                <Select
+                  value={ClientChartState}
+                  onChange={e => setClientChartState(e.target.value)}
+                  input={
+                    <OutlinedInput
+                      labelWidth={0}
+                      classes={{
+                        notchedOutline: classes.mainChartSelectRoot,
+                        input: classes.mainChartSelect,
+                      }}
+                    />
+                  }
+                  autoWidth
+                >
+                  <MenuItem value="YTD">Issues</MenuItem>
+                  <MenuItem value="burn">Burn Time</MenuItem>
+                </Select>
+              </div>
+            }
+          >
+            {(ClientChartState === "YTD")?
+            <ResponsiveContainer width="100%" minWidth={500} height={350}>
+            <BarChart
+              margin={{ top: 0, right: -15, left: -15, bottom: 0 }}
+              data={ClientChartData}
+            >
+              <YAxis
+                ticks={[0, 15, 25, 35, 45]}
+                tick={{ fill: theme.palette.text.primary + "80", fontSize: 14 }}
+                stroke={theme.palette.text.primary + "80"}
+              />
+              <XAxis
+              dataKey = 'stores'
+                tickFormatter={i => i}
+                tick={{ fill: theme.palette.text.primary + "80", fontSize: 14 }}
+                stroke={theme.palette.text.primary + "80"}
+              />
+              <Tooltip />
+              <Bar
+                dataKey="Jan"
+                fill="#1096CB"  
+              />
+              <Bar
+                dataKey="Feb"
+                fill="#FF5C93"  
+              />
+              <Bar
+                dataKey="Mar"
+                fill= "#3CD4A0"  
+              />
+              
+            </BarChart>
+          </ResponsiveContainer>
+            :             
+            <ResponsiveContainer width="100%" minWidth={500} height={350}>
+            <BarChart
+              margin={{ top: 0, right: -15, left: -15, bottom: 0 }}
+              data={ClientChartData}
+            >
+              <YAxis
+                ticks={[0, 25, 50, 75, 100,125, 150]}
+                tick={{ fill: theme.palette.text.primary + "80", fontSize: 14 }}
+                stroke={theme.palette.text.primary + "80"}
+              />
+              <XAxis
+              dataKey = 'stores'
+                tickFormatter={i => i}
+                tick={{ fill: theme.palette.text.primary + "80", fontSize: 14 }}
+                stroke={theme.palette.text.primary + "80"}
+              />
+              <Tooltip />
+              <Bar
+                dataKey="JanBurn"
+                fill="#1096CB"  
+              />
+              <Bar
+                dataKey="FebBurn"
+                fill="#FF5C93"  
+              />
+              <Bar
+                dataKey="MarBurn"
+                fill= "#3CD4A0"  
+              />
+              
+            </BarChart>
+          </ResponsiveContainer>}
           </Widget>
         </Grid>
       </Grid>
@@ -545,13 +655,8 @@ function getMainChartData() {
 function getProductBurnData(){
   var resultArray = [];
   var Jan = [6.35,0,31.01,0,20.47,1.80];
-
-
   var Feb = [1.15,5.83,3.74,0,18.07,3.21];
-
   var Mar = [1.95,1.45,0,0,.17,0];
-
-
   let product = ["Store", 'CCOS', 'Deposits', 'Integrations', 'Vendor Dashboard', 'Close Services']
   for (let i = 0; i < product.length; i++) {
     resultArray.push({
@@ -563,3 +668,30 @@ function getProductBurnData(){
   }
   return resultArray;
 }
+
+function getClientBurnData(){
+  var resultArray = [];
+  var Jan = [4,0,4,0,0,0,26,5,0,5,11,8,0];
+  var Feb = [7,2,8,2,1,0,43,3,5,5,5,1,0];
+  var Mar = [2,1,1,0,2,1,33,3,6,1,2,1,2];
+
+  var JanBurn = [4,0,6.79,0,0,0,51.72,17.36,0,8.93,27.66,9.86,0];
+  var FebBurn = [13.08,3.88,19.07,6.32,.18,0,147.66,7.76,17.29,9.30,15.07,4.59,0];
+  var MarBurn = [21.28,4.10,6.07,0,6.27,.17,147.67,11.77,8.33,4.68,7.75,1.02,5.13];
+
+  let stores = ["AM Bank", 'BBOW', 'BBOK', 'Beneficial', 'CSB New Castle', 'Equitable','Evergreen','FBA','Las Animas','ICBA','TCM','UBB','WaFd']
+  for (let i = 0; i < stores.length; i++) {
+    resultArray.push({
+      Jan : Jan[i],
+      Feb : Feb[i],
+      Mar : Mar[i],
+      JanBurn : JanBurn[i],
+      FebBurn : FebBurn[i],
+      MarBurn : MarBurn[i],
+      stores: stores[i]
+    });
+  }
+  return resultArray;
+}
+
+
