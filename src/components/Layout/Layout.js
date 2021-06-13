@@ -36,6 +36,7 @@ import Charts from "../../pages/charts";
 import { useLayoutState } from "../../context/LayoutContext";
 import QA_Dashboard from "../../pages/qa/QA_Dashboard";
 import Security_Dashboard from "../../pages/security/Security_Dashboard";
+import Test_Cases_Service from "../../pages/test_cases/Test_Cases_Service";
 
 function Layout(props) {
   var classes = useStyles();
@@ -58,6 +59,7 @@ function Layout(props) {
               <Route path="/app/sprint" component={Dashboard} />
               <Route path="/app/qa" component={QA_Dashboard} />
               <Route path="/app/security" component={Security_Dashboard} />
+              <Route path="/app/testcases" component={Test_Cases_Service} />
               <Route path="/app/typography" component={Typography} />
               <Route path="/app/tables" component={Tables} />
               <Route path="/app/notifications" component={Notifications} />
