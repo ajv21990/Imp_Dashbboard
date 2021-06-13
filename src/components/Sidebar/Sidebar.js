@@ -10,7 +10,8 @@ import {
   LibraryBooks as LibraryIcon,
   HelpOutline as FAQIcon,
   ArrowBack as ArrowBackIcon,
-  BugReport as BugReportIcon
+  BugReport as BugReportIcon,
+  Security as SecurityIcon
 } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
@@ -33,21 +34,22 @@ import {
 const structure = [
   { id: 0, label: "Sprint", link: "/app/sprint", icon: <HomeIcon /> },
   { id: 1, label: "QA", link: "/app/qa", icon: <BugReportIcon /> },
+  { id: 2, label: "Security", link: "/app/security", icon: <SecurityIcon /> },
   {
-    id: 2,
+    id: 3,
     label: "Typography",
     link: "/app/typography",
     icon: <TypographyIcon />,
   },
-  { id: 3, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
+  { id: 4, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
   {
-    id: 4,
+    id: 5,
     label: "Notifications",
     link: "/app/notifications",
     icon: <NotificationsIcon />,
   },
   {
-    id: 5,
+    id: 6,
     label: "UI Elements",
     link: "/app/ui",
     icon: <UIElementsIcon />,
@@ -57,27 +59,27 @@ const structure = [
       { label: "Maps", link: "/app/ui/maps" },
     ],
   },
-  { id: 6, type: "divider" },
-  { id: 7, type: "title", label: "HELP" },
-  { id: 8, label: "Library", link: "", icon: <LibraryIcon /> },
-  { id: 9, label: "Support", link: "", icon: <SupportIcon /> },
-  { id: 10, label: "FAQ", link: "", icon: <FAQIcon /> },
-  { id: 11, type: "divider" },
-  { id: 12, type: "title", label: "PROJECTS" },
+  { id: 7, type: "divider" },
+  { id: 8, type: "title", label: "HELP" },
+  { id: 9, label: "Library", link: "", icon: <LibraryIcon /> },
+  { id: 10, label: "Support", link: "", icon: <SupportIcon /> },
+  { id: 11, label: "FAQ", link: "", icon: <FAQIcon /> },
+  { id: 12, type: "divider" },
+  { id: 13, type: "title", label: "PROJECTS" },
   {
-    id: 13,
+    id: 14,
     label: "My recent",
     link: "",
     icon: <Dot size="small" color="warning" />,
   },
   {
-    id: 14,
+    id: 15,
     label: "Starred",
     link: "",
     icon: <Dot size="small" color="primary" />,
   },
   {
-    id: 15,
+    id: 16,
     label: "Background",
     link: "",
     icon: <Dot size="small" color="secondary" />,
