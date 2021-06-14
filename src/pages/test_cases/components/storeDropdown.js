@@ -63,6 +63,27 @@ const StoreDropdown = props => {
         </Select>
         </div>
     ) : null}
+
+    {/* Product Dropdown */}
+    {props.alphaStoreState === "Biz Alpha" ? (
+      <div>
+        <InputLabel htmlFor="biz-alpha-products-native-simple">Store</InputLabel>
+        <Select 
+          native
+          value={props.productsState} 
+          onChange={e => props.setProductsState(e.target.value)}
+          inputProps={{
+            name: 'biz-alpha-products',
+            id: 'biz-alpha-products-native-simple',
+        }}
+        >
+          <option aria-label="None" value="" />
+          <option value={props.products[0][0].productID}>{props.products[0][0].productName}</option>
+          <option value={props.products[0][1].productID}>{props.products[0][1].productName}</option>
+
+        </Select>
+        </div>
+    ) : null}
     </div>
     )}
 

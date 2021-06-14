@@ -53,16 +53,19 @@ var theme = useTheme();
 
 
   // Defining local variables and states
-  let creditIntegrations = ["Experian","TransUnion","Equifax"]
-  let creditScore = ["High","Average","Low", 'No Credit']
-  let alphaStores = [mock.alphaStores]
-  let testProfiles = [mock.testCaseExp, mock.testCaseTU, mock.testCaseEq]
-  let products = ''
+  const creditIntegrations = ["Experian","TransUnion","Equifax"]
+  const creditScore = ["High","Average","Low", 'No Credit']
+  const alphaStores = [mock.alphaStores]
+  const testProfiles = [mock.testCaseExp, mock.testCaseTU, mock.testCaseEq] 
+  const products = [mock.alphaStores[0].products,mock.alphaStores[1].products,mock.alphaStores[2].products,mock.alphaStores[4].products,mock.alphaStores[5].products]
+  
+  console.log(products)
   var [integrationState, setIntegrationState] = useState(creditIntegrations);
   var [creditScoreState, setCreditScoreState] = useState(creditScore);
   var [alphaStoreState, setAlphaStoreState] = useState(alphaStores);
   var [testProfilesState, settestProfilesState] = useState(testProfiles);
-console.log(alphaStores)
+  var [productsState, setProductsState] = useState(products);
+
   return (
     <>
       <PageTitle title="Test Case Service"/>
@@ -109,6 +112,10 @@ console.log(alphaStores)
         setAlphaStoreState = {setAlphaStoreState}
         integrationState = {integrationState}
         alphaStores = {alphaStores}
+        productsState = {productsState}
+        setProductsState = {setProductsState}
+        products = {products}
+        
         />
         <br/>
         <br/>

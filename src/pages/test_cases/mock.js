@@ -81,28 +81,72 @@ export default {
   alphaStores:[
     {
       storeName: "Biz Alpha",
-      products: [],
-      storeID: '',
+      products: [
+        {
+          productName: "Cash Rewards Visa",
+          productID: "cash-rewards-worldcard"
+        },
+        {
+          productName: "Platinum Visa",
+          productID: "platinum-visa"
+        }],
+      storeID: 'MkCreditCards',
       submitURL:''
     },
     {
       storeName: "BBOW",
-      products: [],
-      storeID: '',
+      products: [
+        {
+          productName: "Visa® Platinum Cash Rewards",
+          productID: "visa-platinum-cash-rewards"
+        },
+        {
+          productName: "Visa® Platinum Rewards",
+          productID: "visa-platinum-rewards"
+        },
+        {
+          productName: "Visa® Platinum",
+          productID: "visa-platinum"
+        }],
+      storeID: 'BankersBank',
       submitURL:''
 
     },
     {
       storeName: "BBOK",
-      products: [],
-      storeID: '',
+      products: [
+        {
+          productName: "VISA® Classic",
+          productID: "visa-classic"
+        },
+        {
+          productName: "VISA® Platinum",
+          productID: "visa-platinum-rewards"
+        }],
+      storeID: 'bbok-demo',
       submitURL:''
 
     },
     {
       storeName: "TCM",
-      products: [],
-      storeID: '',
+      products: [
+        {
+          productName: "Rewards Platinum Visa®",
+          productID: "rewards-platinum-card"
+        },
+        {
+          productName: "Cash Rewards Platinum Visa®",
+          productID: "cash-rewards-platinum-card"
+        },
+        {
+          productName: "Platinum Edition Visa®",
+          productID: "platinum-edition-visa"
+        },
+        {
+          productName: "Visa® Signature Travel",
+          productID: "visa-signature-travel"
+        }],
+      storeID: '300265',
       submitURL:''
 
     },
@@ -115,8 +159,16 @@ export default {
     },
     {
       storeName: "Demo",
-      products: [],
-      storeID: '',
+      products: [
+        {
+          productName: "Cash Rewards World Visa",
+          productID: "cash-rewards-worldcard"
+        },
+        {
+          productName: "Platinum Visa",
+          productID: "platinum-visa"
+        }],
+      storeID: 'MkCreditCardsDemo',
       submitURL:''
 
     }   
