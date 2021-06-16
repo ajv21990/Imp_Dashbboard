@@ -3,35 +3,13 @@ import axios from 'axios'
 import SecCharts from './components/scan_charts'
 import InputLabel from '@material-ui/core/InputLabel';
 import {
-  Grid,
-  LinearProgress,
   Select,
-  OutlinedInput,
-  MenuItem,
-  Button,
-  Divider,
-  Input
+  Button
 } from "@material-ui/core";
-import { useTheme } from "@material-ui/styles";
-import {
-  ResponsiveContainer,
-  ComposedChart,
-  AreaChart,
-  LineChart,
-  Line,
-  Area,
-  PieChart,
-  Pie,
-  Cell,
-  YAxis,
-  XAxis,
-  Legend,
-  Tooltip,
-  BarChart,
-  Bar
-} from "recharts";
 // styles
 import useStyles from "./styles";
+import { useTheme } from "@material-ui/styles";
+
 
 // components
 import mock from "./mock";
@@ -39,11 +17,11 @@ import Widget from "../../components/Widget/Widget";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import { Typography } from "../../components/Wrappers/Wrappers";
 import TestProfileDropdown from './components/testProfileDropdown.js'
-import StoreDropdown from './components/storeDropdown.js'
+import ConsumerDropdown from './components/consumerDropdown.js'
+import RadioButtonsGroup from './components/appRadioGroup.js'
 
 
-const mainChartData = getMainChartData();
-const systemUpdateData = getSystemUpdateData();
+
  
 
 export default function Test_Cases_Service(props) {
@@ -57,19 +35,27 @@ var theme = useTheme();
   const creditScore = ["High","Average","Low", 'No Credit']
   const alphaStores = [mock.alphaStores]
   const testProfiles = [mock.testCaseExp, mock.testCaseTU, mock.testCaseEq] 
-  const products = [mock.alphaStores[0].products,mock.alphaStores[1].products,mock.alphaStores[2].products,mock.alphaStores[4].products,mock.alphaStores[5].products]
+  const products = [mock.alphaStores[0].products,mock.alphaStores[1].products,mock.alphaStores[2].products,mock.alphaStores[3].products,mock.alphaStores[5].products]
   
-  console.log(products)
   var [integrationState, setIntegrationState] = useState(creditIntegrations);
   var [creditScoreState, setCreditScoreState] = useState(creditScore);
   var [alphaStoreState, setAlphaStoreState] = useState(alphaStores);
   var [testProfilesState, settestProfilesState] = useState(testProfiles);
   var [productsState, setProductsState] = useState(products);
+  var [appTypeState, setAppTypeState] = useState('');
+
 
   return (
     <>
       <PageTitle title="Test Case Service"/>
       <div>
+        <div>
+          <RadioButtonsGroup
+          appTypeState = {appTypeState}
+          setAppTypeState = {setAppTypeState}
+           />
+        </div>
+        <br/>
       <InputLabel htmlFor="credit-integration-native-simple">Credit Integration</InputLabel>
         <Select
           native
@@ -87,6 +73,8 @@ var theme = useTheme();
         </Select>
         <br/>
         <br/>
+        {!Array.isArray(integrationState)?
+        <div>
         <InputLabel htmlFor="credit-score-native-simple">Credit Score</InputLabel>
         <Select
           native
@@ -105,60 +93,40 @@ var theme = useTheme();
           <option value={creditScore[3]}>{creditScore[3]}</option>
           ): null}
         </Select>
+        </div>
+        : null}
+
         <br/>
-        <br/>
-        <StoreDropdown
-        alphaStoreState = {alphaStoreState}
-        setAlphaStoreState = {setAlphaStoreState}
-        integrationState = {integrationState}
-        alphaStores = {alphaStores}
-        productsState = {productsState}
-        setProductsState = {setProductsState}
-        products = {products}
-        
-        />
-        <br/>
-        <br/>
-        <TestProfileDropdown
-        testProfiles = {testProfiles}
-        testProfilesState = {testProfilesState}
-        settestProfilesState = {settestProfilesState}
-        integrationState = {integrationState}
-        creditScoreState = {creditScoreState}
-        />
+
+        {appTypeState === "consumer" ? 
+        <div>
+                <TestProfileDropdown
+                testProfiles = {testProfiles}
+                testProfilesState = {testProfilesState}
+                settestProfilesState = {settestProfilesState}
+                integrationState = {integrationState}
+                creditScoreState = {creditScoreState}
+                />
+                <br/>
+                <ConsumerDropdown
+                alphaStoreState = {alphaStoreState}
+                setAlphaStoreState = {setAlphaStoreState}
+                integrationState = {integrationState}
+                alphaStores = {alphaStores}
+                productsState = {productsState}
+                setProductsState = {setProductsState}
+                products = {products}
+                testProfilesState = {testProfilesState}
+                />
+                </div>
+        : null}
 
       </div>
     </>
   );
 }
 
-// ##############################Functions to grab Data#########################################
-function getMainChartData() {
-  var resultArray = [];
-  var stats = [31.7,52.4,15.9,0];
-  let level = ["Informational","Low","Average","High"]
-  for (let i = 0; i < level.length; i++) {
-    resultArray.push({
-      stats: stats[i],
-      level: level[i]
-    });
-  }
-  return resultArray;
-}
 
-function getSystemUpdateData() {
-  var resultArray = [];
-  var Created = [58,45,39,0,0,0,0,0,0,0,0,0];
-  var Implemented = [55,39,42,0,0,0,0,0,0,0,0,0];
-  let month = ["Jan", 'Feb', 'Mar', 'Apr', 'May', 'Jun', "July", 'Aug', "Sept", "Oct", 'Nov','Dec']
-  for (let i = 0; i < month.length; i++) {
-    resultArray.push({
-      Created: Created[i],
-      Implemented: Implemented[i],
-      month: month[i]
-    });
-  }
-  return resultArray;
-}
+
 
 
