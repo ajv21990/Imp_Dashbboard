@@ -3,21 +3,40 @@ import {Select, Card, CardContent, Button} from "@material-ui/core";
 import InputLabel from '@material-ui/core/InputLabel';
 
 const ConsumerDropdown = props => {
-  function copyPostmanRequest(){
-    /* Get the text field */
-    var copyText = document.getElementById("postmanRequest").innerText.toString();
-    var dummy = document.createElement("input");
-    document.body.appendChild(dummy);
-    dummy.setAttribute('value', copyText);
-    dummy.select();
-    document.execCommand("copy");
-    document.body.removeChild(dummy);
-  
-    /* Alert the copied text */
-    alert("Object copied to clipboard");
-  }
+
 
   function getPostmanRequest(store,name,product) {
+    //Declaring copy JSON request function
+    function copyPostmanRequest(){
+      /* Get the text field */
+      var copyText = document.getElementById("postmanURLRequest").innerText.toString();
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+      dummy.setAttribute('value', copyText);
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+    
+      /* Alert the copied text */
+      alert("URL copied to clipboard");
+    }
+    
+
+    function copyPostmanURL(){
+      /* Get the text field */
+      var copyText = document.getElementById("postmanRequest").innerText.toString();
+      var dummy = document.createElement("input");
+      document.body.appendChild(dummy);
+      dummy.setAttribute('value', copyText);
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+    
+      /* Alert the copied text */
+      alert("Object copied to clipboard");
+    }
+
+
     let firstName = ''
     let middleName = ''
     let lastName = ''
@@ -31,6 +50,31 @@ const ConsumerDropdown = props => {
     let dob = ''
     let phone = ''
     
+    let requestURL = ""
+    let storeID = ""
+    switch(store){
+      case "Biz Alpha":
+      requestURL = "https://biz.alpha.mkdecision.com/ccos/submit-credit-application";
+      storeID = "MkCreditCards"
+      break;
+      case "BBOW":
+      storeID = "BankersBank"
+      requestURL = "https://bankersbank.close.alpha.mkdecision.com/ccos/submit-credit-application"
+      break;      
+      case "BBOK":
+      storeID = "bbok-demo"      
+      requestURL = "https://bbok.close.alpha.mkdecision.com/ccos/submit-credit-application"
+      break;
+      case "TCM":
+      storeID = "300265"
+      requestURL = "https://tcmbank.close.alpha.mkdecision.com/ccos/submit-credit-application"
+      break; 
+      case "Demo":
+      storeID = "MkCreditCardsDemo"  
+      requestURL = "https://demo.close.mkdecision.com/ccos/submit-credit-application"
+      break; 
+
+    }
     switch (name){
       case "SANDRA BUSTAMENTE":
       address = "3320 MIDDLE BELLVILLE RD";
@@ -179,7 +223,7 @@ const ConsumerDropdown = props => {
     
     
     let postmanRequest = {
-      "storeId": `${store}`,
+      "storeId": `${storeID}`,
       "productId": `${product}`,
       "agreementsSigned": [
           "MkAgrElectronicSignatureAgreement",
@@ -251,17 +295,28 @@ const ConsumerDropdown = props => {
     let formattedPostmanRequest = JSON.stringify(postmanRequest, null, "\t")
     return (
       <div>
-            {!Array.isArray(product)?
+        {!(product === '')?
+        <div>
+          <Card>
+                <CardContent id="postmanURLRequest">{requestURL}</CardContent>
+          </Card>
+          <br/>
+          <Button variant="contained" color="inherit" onClick={copyPostmanURL}>Copy URL</Button>
+          <br/>
+          <br/>
           <Card>
             <CardContent id="postmanRequest">{formattedPostmanRequest}</CardContent>
-          </Card>:null}
+          </Card>
+          <br/>
+          <Button variant="contained" color="inherit" onClick={copyPostmanRequest}>Copy Request</Button>
+          </div>:null}
       </div>
     )
     }
 
     return(
     <div>
-    {props.integrationState === "Experian"  && !Array.isArray(props.testProfilesState) ? (
+    {props.integrationState === "Experian"  && !(props.testProfilesState === '') ? (
       <div>
         <InputLabel htmlFor="store-native-simple">Store</InputLabel>
         <Select 
@@ -274,14 +329,14 @@ const ConsumerDropdown = props => {
         }}
         >
           <option aria-label="None" value="" />
-          <option value={props.alphaStores[0][0].storeID}>{props.alphaStores[0][0].storeName}</option>
-          <option value={props.alphaStores[0][3].storeID}>{props.alphaStores[0][3].storeName}</option>
-          <option value={props.alphaStores[0][5].storeID}>{props.alphaStores[0][5].storeName}</option>
+          <option value={props.alphaStores[0]}>{props.alphaStores[0]}</option>
+          <option value={props.alphaStores[3]}>{props.alphaStores[3]}</option>
+          <option value={props.alphaStores[4]}>{props.alphaStores[4]}</option>
 
         </Select>
         </div>
     ) : null}
-        {props.integrationState === "TransUnion"  && !Array.isArray(props.testProfilesState) ? (
+        {props.integrationState === "TransUnion"  && !(props.testProfilesState === '') ? (
       <div>
         <InputLabel htmlFor="tu-stores-native-simple">Store</InputLabel>
         <Select 
@@ -294,13 +349,13 @@ const ConsumerDropdown = props => {
         }}
         >
           <option aria-label="None" value="" />
-          <option value={props.alphaStores[0][0].storeID}>{props.alphaStores[0][0].storeName}</option>
-          <option value={props.alphaStores[0][2].storeID}>{props.alphaStores[0][2].storeName}</option>
-          <option value={props.alphaStores[0][5].storeID}>{props.alphaStores[0][5].storeName}</option>
+          <option value={props.alphaStores[0]}>{props.alphaStores[0]}</option>
+          <option value={props.alphaStores[2]}>{props.alphaStores[2]}</option>
+          <option value={props.alphaStores[4]}>{props.alphaStores[4]}</option>
         </Select>
         </div>
     ) : null}
-        {props.integrationState === "Equifax"  && !Array.isArray(props.testProfilesState) ? (
+        {props.integrationState === "Equifax"  && !(props.testProfilesState === '') ? (
       <div>
         <InputLabel htmlFor="eq-stores-native-simple">Store</InputLabel>
         <Select 
@@ -313,15 +368,14 @@ const ConsumerDropdown = props => {
         }}
         >
           <option aria-label="None" value="" />
-          <option value={props.alphaStores[0][0].storeID}>{props.alphaStores[0][0].storeName}</option>
-          <option value={props.alphaStores[0][4].storeID}>{props.alphaStores[0][4].storeName}</option>
-          <option value={props.alphaStores[0][5].storeID}>{props.alphaStores[0][5].storeName}</option>
+          <option value={props.alphaStores[0]}>{props.alphaStores[0]}</option>
+          <option value={props.alphaStores[4]}>{props.alphaStores[4]}</option>
         </Select>
         </div>
     ) : null}
 <br/>
     {/* Product Dropdown */}
-    {props.alphaStoreState === "MkCreditCards" ? (
+    {props.alphaStoreState === "Biz Alpha" ? (
       <div>
         <InputLabel htmlFor="biz-alpha-products-native-simple">Products</InputLabel>
         <Select 
@@ -340,7 +394,7 @@ const ConsumerDropdown = props => {
         </Select>
         </div>
     ) : null}
-        {props.alphaStoreState === "BBOW" ? (
+      {props.alphaStoreState === "BBOW" ? (
       <div>
         <InputLabel htmlFor="bbow-alpha-products-native-simple">Products</InputLabel>
         <Select 
@@ -377,8 +431,8 @@ const ConsumerDropdown = props => {
         </Select>
         </div>
     ) : null}
-            {props.alphaStoreState === "TCM" ? (
-      <div>
+        {props.alphaStoreState === "TCM" ? (
+        <div>
         <InputLabel htmlFor="tcm-alpha-products-native-simple">Products</InputLabel>
         <Select 
           native
@@ -417,10 +471,6 @@ const ConsumerDropdown = props => {
     ) : null}
     <br/>
     {getPostmanRequest(props.alphaStoreState, props.testProfilesState,props.productsState )}
-    <br/>
-    {!Array.isArray(props.productsState)?
-        <Button variant="contained" color="inherit" onClick={copyPostmanRequest}>Copy</Button>
-    :null}
     </div>
     )}
 

@@ -33,17 +33,18 @@ var theme = useTheme();
   // Defining local variables and states
   const creditIntegrations = ["Experian","TransUnion","Equifax"]
   const creditScore = ["High","Average","Low", 'No Credit']
-  const alphaStores = [mock.alphaStores]
+  const alphaStores = [mock.alphaStores[0].storeName,mock.alphaStores[1].storeName,mock.alphaStores[2].storeName,mock.alphaStores[3].storeName,mock.alphaStores[5].storeName]
   const testProfiles = [mock.testCaseExp, mock.testCaseTU, mock.testCaseEq] 
   const products = [mock.alphaStores[0].products,mock.alphaStores[1].products,mock.alphaStores[2].products,mock.alphaStores[3].products,mock.alphaStores[5].products]
-  
-  var [integrationState, setIntegrationState] = useState(creditIntegrations);
-  var [creditScoreState, setCreditScoreState] = useState(creditScore);
-  var [alphaStoreState, setAlphaStoreState] = useState(alphaStores);
-  var [testProfilesState, settestProfilesState] = useState(testProfiles);
-  var [productsState, setProductsState] = useState(products);
+
+  var [integrationState, setIntegrationState] = useState('');
+  var [creditScoreState, setCreditScoreState] = useState('');
+  var [alphaStoreState, setAlphaStoreState] = useState('');
+  var [testProfilesState, settestProfilesState] = useState('');
+  var [productsState, setProductsState] = useState('');
   var [appTypeState, setAppTypeState] = useState('');
 
+  let test = ''
 
   return (
     <>
@@ -73,7 +74,7 @@ var theme = useTheme();
         </Select>
         <br/>
         <br/>
-        {!Array.isArray(integrationState)?
+        {!(integrationState === '')?
         <div>
         <InputLabel htmlFor="credit-score-native-simple">Credit Score</InputLabel>
         <Select
@@ -117,6 +118,7 @@ var theme = useTheme();
                 setProductsState = {setProductsState}
                 products = {products}
                 testProfilesState = {testProfilesState}
+                test = {test}
                 />
                 </div>
         : null}
