@@ -4,8 +4,10 @@ import SecCharts from './components/scan_charts'
 import InputLabel from '@material-ui/core/InputLabel';
 import {
   Select,
-  Button
+  Button,
+  Grid
 } from "@material-ui/core";
+import Table from './components/Table/Table'
 // styles
 import useStyles from "./styles";
 import { useTheme } from "@material-ui/styles";
@@ -48,8 +50,44 @@ var theme = useTheme();
 
   return (
     <>
-      <PageTitle title="Test Case Service"/>
+      <PageTitle title="Test Self Service"/>
       <div>
+      <h1>Test Cases</h1>
+      <Grid item xs={12}>
+          <Widget
+            title="Experian"
+            upperTitle
+            noBodyPadding
+            bodyClass={classes.tableWidget}
+          >
+            <Table  data={mock.expTable} />
+          </Widget>
+        </Grid>
+        <br/>
+        <Grid item xs={12}>
+          <Widget
+            title="TransUnion"
+            upperTitle
+            noBodyPadding
+            bodyClass={classes.tableWidget}
+          >
+            <Table data={mock.tuTable} />
+          </Widget>
+        </Grid>
+        <br/>
+        
+        <Grid item xs={12}>
+          <Widget
+            title="Equifax"
+            upperTitle
+            noBodyPadding
+            bodyClass={classes.tableWidget}
+          >
+            <Table data={mock.eqfaxTable} />
+          </Widget>
+        </Grid>
+        <br/>
+        <h1>Test App JSON Generator</h1>
         <div>
           <RadioButtonsGroup
           appTypeState = {appTypeState}
