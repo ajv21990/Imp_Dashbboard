@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from 'axios'
-import SecCharts from './components/scan_charts'
+import React, {useState } from "react";
 import InputLabel from '@material-ui/core/InputLabel';
 import {
   Select,
@@ -17,7 +15,6 @@ import { useTheme } from "@material-ui/styles";
 import mock from "./mock";
 import Widget from "../../components/Widget/Widget";
 import PageTitle from "../../components/PageTitle/PageTitle";
-import { Typography } from "../../components/Wrappers/Wrappers";
 import TestProfileDropdown from './components/testProfileDropdown.js'
 import ConsumerDropdown from './components/consumerDropdown.js'
 import RadioButtonsGroup from './components/appRadioGroup.js'
@@ -27,9 +24,7 @@ import RadioButtonsGroup from './components/appRadioGroup.js'
  
 
 export default function Test_Cases_Service(props) {
-let COLORS = ['#1096CB', '#3CD4A0', '#000000', 'error']
 var classes = useStyles();
-var theme = useTheme();
 
 
   // Defining local variables and states
@@ -46,11 +41,9 @@ var theme = useTheme();
   var [productsState, setProductsState] = useState('');
   var [appTypeState, setAppTypeState] = useState('');
 
-  let test = ''
-
   return (
     <>
-      <PageTitle title="Test Self Service"/>
+      <PageTitle title="QA Self Service"/>
       <div>
       <h1>Test Cases</h1>
       <Grid item xs={12}>
@@ -84,6 +77,29 @@ var theme = useTheme();
             bodyClass={classes.tableWidget}
           >
             <Table data={mock.eqfaxTable} />
+          </Widget>
+        </Grid>
+        <br/>
+        
+        <Grid item xs={12}>
+          <Widget
+            title="Frozen"
+            upperTitle
+            noBodyPadding
+            bodyClass={classes.tableWidget}
+          >
+            <Table data={mock.frozenTable} />
+          </Widget>
+        </Grid>
+        <br/>
+        <Grid item xs={12}>
+          <Widget
+            title="OFAC"
+            upperTitle
+            noBodyPadding
+            bodyClass={classes.tableWidget}
+          >
+            <Table data={mock.ofacTable} />
           </Widget>
         </Grid>
         <br/>
@@ -134,9 +150,11 @@ var theme = useTheme();
         </Select>
         </div>
         : null}
-
         <br/>
-
+        {/* Accounting for TU not having a high credit score test case */}
+        {integrationState === 'TransUnion' && creditScoreState === creditScore[0] ?(
+          <p style={{color:'red'}}>N/A for TransUnion</p>
+          ): null}
         {appTypeState === "consumer" ? 
         <div>
                 <TestProfileDropdown
@@ -156,7 +174,6 @@ var theme = useTheme();
                 setProductsState = {setProductsState}
                 products = {products}
                 testProfilesState = {testProfilesState}
-                test = {test}
                 />
                 </div>
         : null}

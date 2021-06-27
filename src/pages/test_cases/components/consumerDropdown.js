@@ -36,7 +36,6 @@ const ConsumerDropdown = props => {
       alert("Object copied to clipboard");
     }
 
-
     let firstName = ''
     let middleName = ''
     let lastName = ''
@@ -309,6 +308,7 @@ const ConsumerDropdown = props => {
           </Card>
           <br/>
           <Button variant="contained" color="inherit" onClick={copyPostmanRequest}>Copy Request</Button>
+          <br/>
           </div>:null}
       </div>
     )
