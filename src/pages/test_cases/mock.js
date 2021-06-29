@@ -89,6 +89,54 @@ export default {
         {
           productName: "Platinum Visa",
           productID: "platinum-visa"
+        },
+        {
+          productName: "Small Business Rewards VISA",
+          productID: "small-business-rewards-card"
+        },
+        {
+          productName: "Small Business Platinum VISA",
+          productID: "small-business-platinum-card"
+        },
+        {
+          productName: "Commercial Rewards VISA",
+          productID: "commercial-rewards-card"
+        },
+        {
+          productName: "Company Rewards Charge Card",
+          productID: "company-rewards-charge-card"
+        },
+        {
+          productName: "Everyday Checking",
+          productID: "everyday-checking"
+        },
+        {
+          productName: "Cashback Checking",
+          productID: "cash-back-checking"
+        },
+        {
+          productName: "Premier Checking",
+          productID: "premier-checking"
+        },
+        {
+          productName: "Emerald Checking",
+          productID: "emerald-checking"
+        },
+        {
+          productName: "Savings",
+          productID: "savings"
+        },
+        {
+          productName: "Minor Savings",
+          productID: "minor-savings"
+        },
+        {
+          productName: "Certificate of Deposit (CD)",
+          productID: "certificate-of-deposit"
+        },
+        {
+          productName: "Money Market",
+          productID: "money-market"
         }],
       storeID: 'MkCreditCards',
       submitURL:''
@@ -107,6 +155,14 @@ export default {
         {
           productName: "Visa® Platinum",
           productID: "visa-platinum"
+        },
+        {
+          productName: "Visa® Platinum Business Rewards",
+          productID: "visa-platinum-business-rewards"
+        },
+        {
+          productName: "Visa® Platinum Business",
+          productID: "visa-platinum-business"
         }],
       storeID: 'BankersBank',
       submitURL:''
@@ -122,6 +178,10 @@ export default {
         {
           productName: "VISA® Platinum",
           productID: "visa-platinum-rewards"
+        },
+        {
+          productName: "VISA® Business Card",
+          productID: "visa-business"
         }],
       storeID: 'bbok-demo',
       submitURL:''
@@ -145,6 +205,22 @@ export default {
         {
           productName: "Visa® Signature Travel",
           productID: "visa-signature-travel"
+        },
+        {
+          productName: "Business Rewards Visa®",
+          productID: "business-rewards-visa"
+        },
+        {
+          productName: "Business Cash Rewards Visa®",
+          productID: "business-cash-rewards-visa"
+        },
+        {
+          productName: "Business Edition Visa®",
+          productID: "business-edition-visa"
+        },
+        {
+          productName: "Company Rewards Charge Card Visa®",
+          productID: "company-rewards-charge-card-visa"
         }],
       storeID: '300265',
       submitURL:''
@@ -167,6 +243,10 @@ export default {
         {
           productName: "Platinum Visa",
           productID: "platinum-visa"
+        },
+        {
+          productName: "Business Rewards Visa",
+          productID: "business-rewards-visa"
         }],
       storeID: 'MkCreditCardsDemo',
       submitURL:''

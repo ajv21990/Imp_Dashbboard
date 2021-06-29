@@ -18,8 +18,8 @@ import PageTitle from "../../components/PageTitle/PageTitle";
 import TestProfileDropdown from './components/testProfileDropdown.js'
 import ConsumerDropdown from './components/consumerDropdown.js'
 import RadioButtonsGroup from './components/appRadioGroup.js'
-
-
+import BizDropdown from './components/bizDropdown.js'
+import DepositDropdown from './components/depositDropdown.js'
 
  
 
@@ -166,6 +166,50 @@ var classes = useStyles();
                 />
                 <br/>
                 <ConsumerDropdown
+                alphaStoreState = {alphaStoreState}
+                setAlphaStoreState = {setAlphaStoreState}
+                integrationState = {integrationState}
+                alphaStores = {alphaStores}
+                productsState = {productsState}
+                setProductsState = {setProductsState}
+                products = {products}
+                testProfilesState = {testProfilesState}
+                />
+                </div>
+        : null}
+            {appTypeState === "business" ? 
+              <div>
+                <TestProfileDropdown
+                testProfiles = {testProfiles}
+                testProfilesState = {testProfilesState}
+                settestProfilesState = {settestProfilesState}
+                integrationState = {integrationState}
+                creditScoreState = {creditScoreState}
+                />
+                <br/>
+                <BizDropdown
+                alphaStoreState = {alphaStoreState}
+                setAlphaStoreState = {setAlphaStoreState}
+                integrationState = {integrationState}
+                alphaStores = {alphaStores}
+                productsState = {productsState}
+                setProductsState = {setProductsState}
+                products = {products}
+                testProfilesState = {testProfilesState}
+                />
+                </div>
+        : null}
+            {appTypeState === "deposits" ? 
+              <div>
+                <TestProfileDropdown
+                testProfiles = {testProfiles}
+                testProfilesState = {testProfilesState}
+                settestProfilesState = {settestProfilesState}
+                integrationState = {integrationState}
+                creditScoreState = {creditScoreState}
+                />
+                <br/>
+                <DepositDropdown
                 alphaStoreState = {alphaStoreState}
                 setAlphaStoreState = {setAlphaStoreState}
                 integrationState = {integrationState}
